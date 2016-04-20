@@ -1,0 +1,191 @@
+@mixin background-layers($top, $bottom) {
+    background: url($top), url($bottom);
+    background-position: center center, center center;
+    background-repeat: repeat, repeat;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+    background-size: auto, cover;
+}
+
+.intro-ceut{
+    background: url(../img/intro-bg-ceut.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.intro-ceut #introduction #header {
+    background-color: transparent;
+    padding: 0;
+    padding-top: 60px;
+    border:0;
+    p{
+        font-size: rem-calc(12);
+    }
+    .logo-sm{
+        width: 100px;
+    }
+}
+
+//==============================
+
+.top-bar{
+    //    background-color: #375a7f;
+    margin-bottom: 1px;
+    .name img{
+        height: 100%;
+        padding: 8px;
+    }
+    ul li .bt-logout{
+        background-color: #7c2020 !important;
+    }
+
+}
+
+.login-bg {
+    background: url(../img/intro-bg-ceut.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.inicio{
+    .trabajemos{
+        color:#FFF;
+        margin:50px 0 20px;
+    }
+    .upper{
+//        background-color: #3150c6;
+        @include background-layers('../img/grid.png','../img/intro-bg-ceut2.jpg');
+    }
+    .ceut{
+        padding: 10px 0;
+    }
+    .manos{
+        padding: 10px 20px 0px;
+        width: 450px
+    }
+    .ceut-logo{
+        padding: 30px 20px 20px;
+        width: 400px
+    }
+    .icono-cont{
+        width: 100px;
+    }
+    #caca svg g path{
+        fill: #bc2b2b;
+    }
+    .cinta{
+        margin-top:10px;
+        padding: 15px 6px;
+        background-color: lighten(#3150c6,5%);
+        h2{color:#FFF;}
+    }
+}
+
+.negrita{
+    font-weight: 700;
+}
+.masnegrita{
+    font-weight: 900;
+}
+
+.opcion-up{
+    width:33.3333333%;
+    padding: 25px 10px;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+    p, h5{
+        color: #FFF;
+        font-weight: 300;
+    }
+    p{margin: 0;}
+    object{
+        width: 80px;
+    }
+    &.op1{
+        border-right: 1px solid #FFF;
+        @include background-layers('../img/grid3.png','../img/op1.jpg');
+    }
+    &.op2{
+        border-right: 1px solid #FFF;
+        @include background-layers('../img/grid3.png','../img/op2.jpg');
+    }
+    &.op3{
+        @include background-layers('../img/grid3.png','../img/op3.jpg');
+    }
+
+}
+.informacion-opcion{
+    border-bottom: 1px solid #FFF;
+    object{
+        width: 150px;
+    }
+    .info-cont{
+        padding: 80px 0;
+        height:100%;
+        p, h4{
+            color: #FFF;
+            font-weight: 300;
+        }
+    }
+    .op1{
+        @include background-layers('../img/grid3.png','../img/op1.jpg');
+    }
+    .op2{
+        @include background-layers('../img/grid3.png','../img/op2.jpg');
+    }
+    .op3{
+        @include background-layers('../img/grid3.png','../img/op3.jpg');
+    }
+    .op4{
+        @include background-layers('../img/grid3.png','../img/op4.jpg');
+    }
+    .op5{
+        @include background-layers('../img/grid3.png','../img/op5.jpg');
+    }
+
+}
+.opciones{
+    width: 100%;
+    max-width: none;
+}
+.opcion-down{
+    width:50%;
+    padding: 25px 10px;
+    border-bottom: 1px solid #FFF;
+    p, h5{
+        color: #FFF;
+        font-weight: 300;
+    }
+    p{margin: 0;}
+    object{
+        width: 80px;
+    }
+    &.op4{
+        border-right: 1px solid #FFF;
+        @include background-layers('../img/grid3.png','../img/op4.jpg');
+    }
+    &.op5{
+        @include background-layers('../img/grid3.png','../img/op5.jpg');
+    }
+}
+.conocenos{
+    padding:20px 0;
+    h2{
+         color: lighten(#3150c6,5%);
+    }
+    object{
+        width:100px;
+    }
+}
+.ending{
+    img.manos-end{
+        padding-top: 50px;
+        width: 400px;
+    }
+}

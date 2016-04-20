@@ -14,249 +14,166 @@
 {# ----------------------------------------------------------- #}
 {% block body %}
 <div class="portal-usuario">
-    {% include 'portal/header.twig' %}
     <div class="inicio">
-        <div class="intro row">
-            <div class="titulo small-12 medium-8 medium-centered columns text-center">
-                <h1>Comience a participar</h1>
-            </div>
-        </div>
-        <div class="acciones row">
-            <div class="small-12 medium-11 columns medium-centered">
-                <div class="medium-1 columns hide-for-small-only">&nbsp;</div>
-                <div class="accion small-6 medium-2 columns problematica text-center">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="colorear fa fa-circle-thin fa-stack-2x"></i>
-                            <i class="fa fa-bullhorn fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <div class="txt"><b>PROBLEMATICAS</b></div>
-                    <div>
-                        <ul class="list">
-                            {% if user %}<li><a href="{{ urlFor('shwCrearProblem') }}"><div><i class="fa fa-plus fa-fw fa-lg"></i></div><div class="txt">Crear</div></a></li>{% endif %}
-                            <li><a href="{{ urlFor('shwPortal') }}"><div><i class="fa fa-search fa-fw fa-lg"></i></div><div class="txt">Ver</div></a></li>
-                        </ul>
-                    </div>
+        <div class="upper">
+            <div class="row">
+                <div class="medium-8 medium-offset-2 columns text-center">
+                    <h2 class="trabajemos"><i>¡Trabajando <span class="masnegrita">JUNTOS</span> para hacer de nuestra casa, un <span class="masnegrita">MEJOR</span> lugar!</i></h2>
                 </div>
-                <div class="accion small-6 medium-2 columns propuesta text-center">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="colorear fa fa-circle-thin fa-stack-2x"></i>
-                            <i class="fa fa-lightbulb-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <div class="txt"><b>PROPUESTA</b></div>
-                    <div>
-                        <ul class="list">
-                            {% if user.es_funcionario %}<li><a href="{{ urlFor('shwCrearPropues') }}"><div><i class="fa fa-plus fa-fw fa-lg"></i></div><div class="txt">Crear</div></a></li>{% endif %}
-                            <li><a href="{{ urlFor('shwPortal') }}"><div><i class="fa fa-search fa-fw fa-lg"></i></div><div class="txt">Ver</div></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accion small-6 medium-2 columns documento text-center">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="colorear fa fa-circle-thin fa-stack-2x"></i>
-                            <i class="fa fa-file-text-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <div class="txt"><b>DOCUMENTOS</b></div>
-                    <div>
-                        <ul class="list">
-                            {% if user.es_funcionario %}<li><a href="{{ urlFor('shwCrearDocumen') }}"><div><i class="fa fa-plus fa-fw fa-lg"></i></div><div class="txt">Crear</div></a></li>{% endif %}
-                            <li><a href="{{ urlFor('shwPortal') }}"><div><i class="fa fa-search fa-fw fa-lg"></i></div><div class="txt">Ver</div></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accion small-6 medium-2 columns evento text-center">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="colorear fa fa-circle-thin fa-stack-2x"></i>
-                            <i class="fa fa-calendar fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <div class="txt"><b>EVENTOS</b></div>
-                    <div>
-                        <ul class="list">
-                            {% if user.es_funcionario %}<li><a href="{{ urlFor('shwCrearEvento') }}"><div><i class="fa fa-plus fa-fw fa-lg"></i></div><div class="txt">Crear</div></a></li>{% endif %}
-                            <li><a href="{{ urlFor('shwEvento') }}"><div><i class="fa fa-search fa-fw fa-lg"></i></div><div class="txt">Ver</div></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accion small-12 medium-2 columns novedad text-center">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="colorear fa fa-circle-thin fa-stack-2x"></i>
-                            <i class="fa fa-newspaper-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <div class="txt"><b>NOVEDAD</b></div>
-                    <div>
-                        <ul class="list">
-                            {% if user.es_funcionario %}<li><a href="{{ urlFor('shwCrearNovedad') }}"><div><i class="fa fa-plus fa-fw fa-lg"></i></div><div class="txt">Crear</div></a></li>{% endif %}
-                            <li><a href="{{ urlFor('shwPortal') }}"><div><i class="fa fa-search fa-fw fa-lg"></i></div><div class="txt">Ver</div></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="medium-1 columns hide-for-small-only">&nbsp;</div>
             </div>
-        </div>
-        <div class="intro row">
-            <div class="titulo small-12 medium-centered columns text-center">
-                <ul class="list">
-                    <li><h6 class="subheader"><a href="#ComoParticipar">Ultimos contenidos</a></h6></li>
-                    <li><h6 class="subheader"><a href="#SobreContenidos">¿Que son y que tipos de contenidos hay?</a></h6></li>
-                    <li><h6 class="subheader"><a href="#ComoParticipar">¿Como participar?</a></h6></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <div id="SobreContenidos" class="intro row">
-            <div class="titulo small-12 medium-8 medium-centered columns text-center">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-question fa-inverse fa-stack-1x"></i>
-                </span>
-                <h1>¿Que son los contenidos?</h1>
-            </div>
-            <div class="descripcion small-12 medium-8 medium-centered columns text-center">
-                El portal te permite crear contenidos como tambien participar de otros.
-                Haz click en los enlaces dispuestos abajo y descubre sobre qué trata cada uno. ¡Infórmate y participa!
-            </div>
-        </div>
-        <div class="contenido-explain row">
-            <div class="small-12 medium-10 medium-centered columns">
-                <div class="panel problematica">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
-                            <i class="colorear fa fa-bullhorn fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <h3><b>PROBLEMATICAS</b></h3>
-                    <div class="txt">Las problematicas informan acerca de necesidades o preocupaciones que tienen los ciudadanos, luego, los demás ciudadanos podrán sumarse a la causa expresando si dicho problema también los afecta tanto directamente como indirectamente.</div>
-                    <div class="link text-center">
-                            {% if user %}
-                            <a href="{{ urlFor('shwCrearProblem') }}">
-                            <div><i class="fa fa-plus fa-fw fa-lg"></i></div>
-                            <div class="txt">Crear</div>
-                            </a>
-                            {% endif %}
-                            <a href="{{ urlFor('shwPortal') }}">
-                            <div><i class="fa fa-search fa-fw fa-lg"></i></div>
-                            <div class="txt">Ver</div>
-                            </a>
-                    </div>
+            <div class="row">
+                <div class="medium-8 medium-offset-2 columns text-center">
+                    <img src="{{ baseUrl() }}/assets/img/manos-blu.png" alt=""class="manos">
                 </div>
             </div>
         </div>
-        <div class="contenido-explain row">
-            <div class="small-12 medium-10 medium-centered columns">
-                <div class="panel propuesta">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
-                            <i class="colorear fa fa-lightbulb-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <h3><b>PROPUESTAS</b></h3>
-                    <div class="txt">Funcionarios públicos podrán exponerle propuestas para que estas sean sometidas a votación. Así se podrá tener un mayor censo con respecto a la aceptación que esta tendrá si ha de implementarse.</div>
-                    <div class="link text-center">
-                        {% if user.es_funcionario == 1 %}
-                        <a href="{{ urlFor('shwCrearPropues') }}">
-                            <div><i class="fa fa-plus fa-fw fa-lg"></i></div>
-                            <div class="txt">Crear</div>
-                        </a>
-                        {% endif %}
-                        <a href="{{ urlFor('shwPortal') }}">
-                            <div><i class="fa fa-search fa-fw fa-lg"></i></div>
-                            <div class="txt">Ver</div>
-                        </a>
-                    </div>
-                </div>
+        <div class="row ceut">
+            <div class="medium-8 medium-offset-2 columns text-center">
+                <img src="{{ baseUrl() }}/assets/img/ceut-logo-crazy.png" alt=""class="ceut-logo">
+                <h6>
+                    <span class="masnegrita"><i>¡Este es tu centro! <i class="fa fa-child fa-fw fa-lg"></i> ¡Y está para vos!</i></span>
+                    <br>
+                    Aportando, colaborando, debatiendo...
+                    <br>
+                    En busqueda de nuevas formas de conectarnos
+                </h6>
+                <h3>
+                    <span class="negrita"><i>Bienvenidos a una nueva forma de colaborar</i></span>
+                </h3>
             </div>
         </div>
-        <div class="contenido-explain row">
-            <div class="small-12 medium-10 medium-centered columns">
-                <div class="panel documento">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
-                            <i class="colorear fa fa-file-text-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <h3><b>DOCUMENTOS ABIERTOS</b></h3>
-                    <div class="txt">Funcionarios podrán publicar documentos para que estos revisados públicamente. Un mecanismo ideal para conocer la opinión detallada de la gente sobre cada sección de un anteproyecto.</div>
-                    <div class="link text-center">
-                        {% if user.es_funcionario %}
-                        <a href="{{ urlFor('shwCrearDocumen') }}">
-                            <div><i class="fa fa-plus fa-fw fa-lg"></i></div>
-                            <div class="txt">Crear</div>
-                        </a>
-                        {% endif %}
-                        <a href="{{ urlFor('shwPortal') }}">
-                            <div><i class="fa fa-search fa-fw fa-lg"></i></div>
-                            <div class="txt">Ver</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="cinta text-center">
+            <h2>
+                <span class="masnegrita"><i class="fa fa-angle-double-down fa-fw"></i>¿Y COMO PUEDO COLABORAR?<i class="fa fa-angle-double-down fa-fw"></i></span>
+            </h2>
         </div>
-        <div class="contenido-explain row">
-            <div class="small-12 medium-10 medium-centered columns">
-                <div class="panel evento">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
-                            <i class="colorear fa fa-calendar fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <h3><b>EVENTOS</b></h3>
-                    <div class="txt">Organismos públicos y grupos políticos podrán dar a conocer eventos que organicen, mientras que los ciudadanos podrán dar confirmacion de su asistencia a estos.</div>
-                    <div class="link text-center">
-                        {% if user.es_funcionario == 1 %}
-                        <a href="{{ urlFor('shwCrearEvento') }}">
-                            <div><i class="fa fa-plus fa-fw fa-lg"></i></div>
-                            <div class="txt">Crear</div>
-                        </a>
-                        {% endif %}
-                        <a href="{{ urlFor('shwPortal') }}">
-                            <div><i class="fa fa-search fa-fw fa-lg"></i></div>
-                            <div class="txt">Ver</div>
-                        </a>
-                    </div>
+        <div class="row opciones">
+            <a id="open-op1" href="#informacion-opcion">
+                <div class="medium-4 columns opcion-up op1 text-center">
+                    <object data="{{ baseUrl() }}/assets/img/problematicas.svg" type="image/svg+xml">
+                    </object>
+                    <h5 class="show-for-small-only"><span class="masnegrita">Problematicas</span></h5>
+                    <p class="show-for-medium-up">Contanos cuales son las <span class="negrita">PROBLEMATICAS</span> que ves día a día</p>
                 </div>
-            </div>
-        </div>
-        <div class="contenido-explain row">
-            <div class="small-12 medium-10 medium-centered columns">
-                <div class="panel novedad">
-                    <div class="icono">
-                        <span class="fa-stack fa-3x">
-                            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
-                            <i class="colorear fa fa-newspaper-o fa-stack-1x"></i>
-                        </span>
-                    </div>
-                    <h3><b>NOVEDADES</b></h3>
-                    <div class="txt">Funcionaros podran publicar cualquier tipo de anuncio que consideren relevante para la sociedad.</div>
-                    <div class="link text-center">
-                        {% if user.es_funcionario == 1 %}
-                        <a href="{{ urlFor('shwCrearNovedad') }}">
-                            <div><i class="fa fa-plus fa-fw fa-lg"></i></div>
-                            <div class="txt">Crear</div>
-                        </a>
-                        {% endif %}
-                        <a href="{{ urlFor('shwPortal') }}">
-                            <div><i class="fa fa-search fa-fw fa-lg"></i></div>
-                            <div class="txt">Ver</div>
-                        </a>
-                    </div>
+            </a>
+            <a id="open-op2" href="#informacion-opcion">
+                <div class="medium-4 columns opcion-up op2 text-center">
+                    <object data="{{ baseUrl() }}/assets/img/propuestas.svg" type="image/svg+xml">
+                    </object>
+                    <h5 class="show-for-small-only"><span class="masnegrita">Propuestas</span></h5>
+                    <p class="show-for-medium-up">Enteraté, votá y opina en nuestras <span class="negrita">PROPUESTAS</span> de solucion</p>
                 </div>
-            </div>
+            </a>
+            <a id="open-op3" href="#informacion-opcion">
+                <div class="medium-4 columns opcion-up op3 text-center">
+                    <object data="{{ baseUrl() }}/assets/img/documentos.svg" type="image/svg+xml">
+                    </object>
+                    <h5 class="show-for-small-only"><span class="masnegrita">Problematicas</span></h5>
+                    <p class="show-for-medium-up">Mirá y colabora en la elaboracion de <span class="negrita">DOCUMENTOS</span></p>
+                </div>
+            </a>
         </div>
+        <div id="informacion-opcion" class="informacion-opcion">
+            <div class="info-cont op1" style="display:none">
+                <div class="row">
+                    <div class="medium-8 medium-offset-2 columns text-center">
+                        <object data="{{ baseUrl() }}/assets/img/problematicas.svg" type="image/svg+xml">
+                        </object>
+                        <h4><span class="masnegrita">PROBLEMATICAS</span></h4>
+                        <p>Todo Usuario puede reportar Problemáticas que encuentre en su entorno. Los demás pueden sumarse a la causa expresando si dicho problema también los afecta o no. Para eso eligen como les afecta:</p>
 
 
+                        <p>Afectado directo ~ Afectado indirecto / Interesado ~ Indiferente</p>
+                        <p>
+                            Al final de la Problemática, se puede ver un resumen de todos los votos en un gráfico de torta.
+                            En respuesta a una Problemática, los representantes (Funcionarios) pueden presentar soluciones en forma de Propuestas. Puede haber más de una Propuesta por Problemática, y todas se listan en un recuadro al final de esta.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-cont op2" style="display:none">
+                <div class="row">
+                    <div class="medium-8 medium-offset-2 columns text-center">
+                        <object data="{{ baseUrl() }}/assets/img/propuestas.svg" type="image/svg+xml">
+                        </object>
+                        <h4><span class="masnegrita">PROPUESTAS</span></h4>
+                        <p>Los Funcionarios exponen sus Propuestas para que sean sometidas a votación. Los representados pueden entonces, expresar su postura con respecto:
+                        <p>A favor ~ En contra ~ Abstención / Neutro</p>
+                        <p>El usuario tiene la opción de hacer su voto público o privado y al igual que en las problemáticas, se pueden ver los resultados en formato de grafico de torta. Asi mismo, se puede cambiar de postura en caso de que la propuesta sea modificada. Es decir que si un representante realiza un cambio en la propuesta, se notifica a los que la hayan votado para que puedan reconsiderar su postura. Si el usuario quiere cambiar su voto sin que haya ocurridado una modificación, deberá esperar un tiempo determinado y será penalizado con quita de puntos..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-cont op3" style="display:none">
+                <div class="row">
+                    <div class="medium-8 medium-offset-2 columns text-center">
+                        <object data="{{ baseUrl() }}/assets/img/documentos.svg" type="image/svg+xml">
+                        </object>
+                        <h4><span class="masnegrita">DOCUMENTOS ABIERTOS</span></h4>
+                        <p>Un Funcionario puede publicar Documentos para que sean revisados públicamente. Esto permite que cualquier Usuario registrado pueda aportar opiniones a los párrafos del mismo. Para esto, el Usuario puede elegir el párrafo a comentar y al hacerle clic se mostrarán los Comentarios asociados, con un espacio debajo para redactar uno.</p>
+                        <p>El representante puede publicar una nueva versión del Documento teniendo en cuenta todos los aportes, y las versiones anteriores se mantendrán guardadas en su historial para que los Usuarios puedan acceder a ellas. Esto es útil por si se desea ver el progreso del Documento versión a versión.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-cont op4" style="display:none">
+                <div class="row">
+                    <div class="medium-8 medium-offset-2 columns text-center">
+                        <object data="{{ baseUrl() }}/assets/img/anuncios.svg" type="image/svg+xml">
+                        </object>
+                        <h4><span class="masnegrita">ANUNCIOS</span></h4>
+                        <p>Funcionarios pueden publicar en nombre de Organismos públicos y/o Grupos políticos cualquier tipo de anuncio que consideren relevante para la sociedad. Al crearse la Novedad se puede elegir si se asocia al Grupo político del autor.
+                        </p>
+                        <p>
+                            Los Usuarios se enteran de los mismos y pueden aportar mediante comentarios.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-cont op5" style="display:none">
+                <div class="row">
+                    <div class="medium-8 medium-offset-2 columns text-center">
+                        <object data="{{ baseUrl() }}/assets/img/eventos.svg" type="image/svg+xml">
+                        </object>
+                        <h4><span class="masnegrita">EVENTOS</span></h4>
+                        <p>Los Funcionarios pueden dar a conocer los Eventos que organicen. Básicamente un Evento consta de una fecha, horario y el lugar donde se celebrará este, acompañado de una descripcion del mismo. También el Evento se puede asociar al Grupo político del cual el creador del Evento se encuentra afiliado.</p>
+                        <p>Por otro lado, los Usuarios pueden confirmar su asistencia o simplemente indicar que no irán a través de las opciones que se presentan al final de la descripcion del Evento. El usuario también tiene la opción de hacer su confirmación pública o privada, y siempre puede aportar mediante Comentarios. Si el creador del evento cambia algún dato de este, todos los Usuarios que hayan confirmado su asistencia, serán notificados para que puedan reconsiderarla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row opciones">
+            <a id="open-op4" href="#informacion-opcion">
+                <div class="medium-6 columns opcion-down op4 text-center">
+                    <object data="{{ baseUrl() }}/assets/img/anuncios.svg" type="image/svg+xml">
+                    </object>
+                    <h5 class="show-for-small-only"><span class="masnegrita">Anuncios</span></h5>
+                    <p class="show-for-medium-up">Enterandote de los <span class="negrita">ANUNCIOS</span> importantes que tu centro tiene para vos</p>
+                </div>
+            </a>
+            <a id="open-op5" href="#informacion-opcion">
+                <div class="medium-6 columns opcion-down op5 text-center">
+                    <object data="{{ baseUrl() }}/assets/img/eventos.svg" type="image/svg+xml">
+                    </object>
+                    <h5 class="show-for-small-only"><span class="masnegrita">Eventos</span></h5>
+                    <p class="show-for-medium-up">Fijate los <span class="negrita">EVENTOS</span> que tu centro organiza y participa de ellos</p>
+                </div>
+            </a>
+        </div>
+        <div class="conocenos">
+          <div class="row">
+              <div class="medium-8 medium-offset-2 columns text-center">
+           <object data="{{ baseUrl() }}/assets/img/smiley.svg" type="image/svg+xml">
+                    </object>
+            <h2><span class="masnegrita">¡CONOCÉ TU CENTRO!</span></h2>
+                 <p>Conoce quienes lo conforman,<br> a quienes te podes acercar si necesitas algo,<br> enterate que hace cada uno,<br> <span class="masnegrita">¡Y quienes son tus representantes mas directos!</span></p>
+                  <a href="#" class="button expand">Ir al recorrido interactivo</a>
+              </div>
+          </div>
+        </div>
+        <div class="ending">
+           <div class="row">
+              <div class="medium-8 medium-offset-2 columns text-center">
+            <img src="{{ baseUrl() }}/assets/img/manos.png" alt=""class="manos-end">
+               </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -268,6 +185,32 @@
     $(document).ready(function(){
 
     });
+    $('#open-op1').click(function(e){
+        e.preventDefault();
+        $('.info-cont').hide();
+        $('.info-cont.op1').slideDown();
+    });
+    $('#open-op2').click(function(e){
+        e.preventDefault();
+        $('.info-cont').hide();
+        $('.info-cont.op2').slideDown();
+    });
+    $('#open-op3').click(function(e){
+        e.preventDefault();
+        $('.info-cont').hide();
+        $('.info-cont.op3').slideDown();
+    });
+    $('#open-op4').click(function(e){
+        e.preventDefault();
+        $('.info-cont').hide();
+        $('.info-cont.op4').slideDown();
+    });
+    $('#open-op5').click(function(e){
+        e.preventDefault();
+        $('.info-cont').hide();
+        $('.info-cont.op5').slideDown();
+    });
+
 </script>
 {% endblock %}
 {# ----------------------------------------------------------- #}

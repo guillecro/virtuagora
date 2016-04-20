@@ -31,3 +31,5 @@ function refreshPaginator(links) {
         $('#nav-'+nav).show().on("click", {url: links[nav]}, startGetRequest);
     }
 }
+
+
