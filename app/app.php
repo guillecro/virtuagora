@@ -17,7 +17,6 @@ $app->container->singleton('session', function () use ($app) {
 
 $app->container->singleton('translator', function () {
     $trans = new Symfony\Component\Translation\Translator('es');
-    $trans->setFallbackLocale('es');
     $trans->addLoader('php', new Symfony\Component\Translation\Loader\PhpFileLoader());
     $trans->addResource('php', __DIR__.'/../locales/es.php', 'es');
     return $trans;
