@@ -14,7 +14,6 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
 }
 
 .intro-ceut #introduction #header {
@@ -59,7 +58,7 @@
         margin:50px 0 20px;
     }
     .upper{
-//        background-color: #3150c6;
+        //        background-color: #3150c6;
         @include background-layers('../img/grid.png','../img/intro-bg-ceut2.jpg');
     }
     .ceut{
@@ -177,7 +176,7 @@
 .conocenos{
     padding:20px 0;
     h2{
-         color: lighten(#3150c6,5%);
+        color: lighten(#3150c6,5%);
     }
     object{
         width:100px;
@@ -188,4 +187,123 @@
         padding-top: 50px;
         width: 400px;
     }
+}
+
+//.upper-nav{
+//    height: 100px;
+//     background: url(../img/nav-utn3.jpg) center center;
+//    -webkit-background-size: cover;
+//    -moz-background-size: cover;
+//    -o-background-size: cover;
+//    background-size: cover;
+//}
+
+.intro-paginas.contenidos{
+    padding: 15px 30px;
+    h2{font-weight: 700; margin:0; color: #1377b3 }
+    color: #1377b3;
+}
+.intro-paginas .descripcion{
+    //    padding:20px;
+    //    border:1px solid #1377b3;
+}
+.boton-nuevo{
+    padding: 10px 0;
+    font-weight: 700;
+    font-size: rem-calc(13);
+
+    a.svg:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    object{
+        width: 40px;
+    }
+    &.problematicas{
+        //        border:1px solid $problematica-color;
+        a{
+            color: $problematica-color;
+        }
+    }
+    &.propuestas{
+        //        border:1px solid $propuesta-color;
+        a{
+            color: $propuesta-color;
+        }
+    }
+    &.documentos{
+        //        border:1px solid $documento-color;
+        a{
+            color: $documento-color;
+        }
+    }
+    &.eventos{
+        //        border:1px solid $evento-color;
+        a{
+            color: $evento-color;
+        }
+    }
+    &.novedades{
+        //        border:1px solid $novedad-color;
+        a{
+            color: $novedad-color;
+        }
+    }
+
+}
+
+.contenidos-hr-listado{
+    margin:0;
+    border-color: #1377b3;
+}
+.intro-paginas.listado-cont{
+    background-color: #1377b3;
+    color: #FFF;
+    padding: 5px 0 10px;
+        margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    h2{color: #FFF; font-weight: 700; margin-bottom: 0;}
+}
+
+a.shorcut{
+
+    @media #{$medium-up} {
+        padding: 0 10px !important;
+}
+
+&.problematica{
+    background-color: $problematica-color !important;
+    &:hover{
+        background-color: darken($problematica-color, 10%) !important;
+    }
+}
+&.propuesta{
+    background-color: $propuesta-color !important;
+    &:hover{
+        background-color: darken($propuesta-color, 10%) !important;
+    }
+}
+&.documento{
+    background-color: $documento-color !important;
+    &:hover{
+        background-color: darken($documento-color, 10%) !important;
+    }
+}
+&.evento{
+    background-color: $evento-color !important;
+    &:hover{
+        background-color: darken($evento-color, 10%) !important;
+    }
+}
+&.novedad{
+    background-color: $novedad-color !important;
+    &:hover{
+        background-color: darken($novedad-color, 10%) !important;
+    }
+}
 }

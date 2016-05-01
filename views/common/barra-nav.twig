@@ -50,7 +50,9 @@
 {% endif %}
 </ul>
 -->
+<div class="upper-nav">
 
+</div>
 <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
         <li class="name">
@@ -102,7 +104,7 @@
         </ul>
 
         <!-- Left Nav Section -->
-        <ul class="<le></le>ft">
+        <ul class="">
             <li class="divider hide-for-medium-up show-for-small-only"></li>
             <li class="show-for-medium-up hide-for-small-only"><a href="{{ urlFor('shwIndex') }}"><i class="fa fa-home fa-fw fa-lg"></i></a></li>
             <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwIndex') }}"><i class="fa fa-home fa-fw fa-lg"></i> Inicio</a></li>
@@ -116,7 +118,21 @@
             </li>
             <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaPartido') }}"><i class="fa fa-users fa-fw fa-lg"></i> Grupos políticos</a></li>
             <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaOrganis') }}"><i class="fa fa-university fa-fw fa-lg"></i> Organismos</a></li>
-            <li class="show-for-medium-up hide-for-small-only"><a href="javascript:void(0)"><i class="fa fa-question fa-fw fa-lg"></i></a></li>
+            {% if user is not empty %}
+            <li class="show-for-large-up"><a href="javascript:void(0)" class="shorcut problematica">+<i class="fa fa-bullhorn fa-fw fa-lg"></i></a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a class="shorcut problematica" href="javascript:void(0)"><i class="fa fa-bullhorn fa-fw fa-lg"></i> Nueva problematica</a></li>
+            {% endif %}
+            {% if user and (user.es_funcionario == 1) %}
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta">+<i class="fa fa-lightbulb-o fa-fw fa-lg"></i></a></li>
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearDocumen')}}" class="shorcut documento">+<i class="fa fa-file-text fa-fw fa-lg"></i></a></li>
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearEvento')}}" class="shorcut evento">+<i class="fa fa-calendar fa-fw fa-lg"></i></a></li>
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearNovedad')}}" class="shorcut novedad">+<i class="fa fa-newspaper-o fa-fw fa-lg"></i></a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta"><i class="fa fa-lightbulb-o fa-fw fa-lg"></i> Nueva propuesta</a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearDocumen')}}" class="shorcut documento"><i class="fa fa-file-text fa-fw fa-lg"></i> Nuevo documento</a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearEvento')}}" class="shorcut evento"><i class="fa fa-calendar fa-fw fa-lg"></i> Nuevo evento</a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearNovedad')}}" class="shorcut novedad"><i class="fa fa-newspaper-o fa-fw fa-lg"></i> Nueva novedad</a></li>
+            {% endif %}
+                        <li class="show-for-medium-up hide-for-small-only"><a href="javascript:void(0)"><i class="fa fa-question fa-fw fa-lg"></i></a></li>
             <li class="hide-for-medium-up show-for-small-only"><a href="javascript:void(0)"><i class="fa fa-question fa-fw fa-lg"></i> Ayuda</a></li>
         </ul>
     </section>
