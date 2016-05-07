@@ -119,8 +119,8 @@
             <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaPartido') }}"><i class="fa fa-users fa-fw fa-lg"></i> Grupos políticos</a></li>
             <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaOrganis') }}"><i class="fa fa-university fa-fw fa-lg"></i> Organismos</a></li>
             {% if user is not empty %}
-            <li class="show-for-large-up"><a href="javascript:void(0)" class="shorcut problematica">+<i class="fa fa-bullhorn fa-fw fa-lg"></i></a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a class="shorcut problematica" href="javascript:void(0)"><i class="fa fa-bullhorn fa-fw fa-lg"></i> Nueva problematica</a></li>
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearProblem')}}" class="shorcut problematica">+<i class="fa fa-bullhorn fa-fw fa-lg"></i></a></li>
+            <li class="hide-for-medium-up show-for-small-only"><a class="shorcut problematica" href="{{urlFor('shwCrearProblem')}}"><i class="fa fa-bullhorn fa-fw fa-lg"></i> Nueva problematica</a></li>
             {% endif %}
             {% if user and (user.es_funcionario == 1) %}
             <li class="show-for-large-up"><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta">+<i class="fa fa-lightbulb-o fa-fw fa-lg"></i></a></li>
