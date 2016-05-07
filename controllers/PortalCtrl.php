@@ -22,6 +22,57 @@ class PortalCtrl extends Controller {
         $tos = Ajuste::where('key', 'tos')->firstOrFail();
         $this->render('portal/tos.twig', ['tos' => $tos->toArray()]);
     }
+    
+    public function verCertificar() {
+        if ($this->session->hasRole('vrf')) {
+            throw new BearableException('Tu cuenta ya está verificada.');
+        }
+        $this->render('portal/certificar.twig');
+    }
+    
+    public function certificar() {
+        $req = $this->request;
+        $ch = curl_init();
+        $url = 'https://guarani.frsf.utn.edu.ar/v291/validador_certificados/validar';
+        $fields = 'codigo_valid=' . $req->post('codigo') . '&recaptcha_response_field=' .
+            urlEncode($req->post('captcha')) . '&recaptcha_challenge_field=' .
+            $req->post('challenge') . '&validar=Validar';
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        $html = curl_exec($ch);
+        curl_close($ch);
+        $match = array();
+        $target = '~La Facultad Regional Santa Fe certifica que (.*?) con legajo n\\\\u00famero (.*?), DNI (.*?), ' .
+                    'de origen Argentino, se encuentra actualmente regular en la carrera de (.*?), plan~';
+        if (preg_match($target, $html, $match) === 1) {
+            $certUsr = Usuario::where('lu', $match[2])->orWhere('dni', $match[3])->first();
+            if (!is_null($certUsr)) {
+                throw new TurnbackException('Esta persona ya tiene su cuenta certificada.');
+            }
+            $usuario = $this->session->getUser();
+            $nombreReal = explode(' ', substr($match[1], 10));
+            $nombreUser = explode(' ', strtoupper($usuario->nombre));
+            $apelliUser = explode(' ', strtoupper($usuario->apellido));
+            $nombreOk = count(array_intersect($nombreUser, $nombreReal)) > 0;
+            $nombreOk &= count(array_intersect($apelliUser, $nombreReal)) > 0;
+            if (!$nombreOk) {
+                throw new TurnbackException('Tu nombre no coincide con: '.substr($match[1], 10).'.');
+            }
+            $usuario->lu = $match[2];
+            $usuario->dni = $match[3];
+            $usuario->carrera = $match[4];
+            $usuario->verified_at = Carbon\Carbon::now();
+            $usuario->save();
+            $this->flash('success', '¡Felicitaciones! Tu cuenta ya está verificada.');
+            $this->redirectTo('shwPortal');
+            //var_dump(substr($match[1], 10), $match[2], $match[3], $match[4]);
+        } else {
+            throw new TurnbackException('La validación falló. Comprobá el código de validación y el captcha.');
+        }
+    }
 
     public function login() {
         $vdt = new Validate\Validator();

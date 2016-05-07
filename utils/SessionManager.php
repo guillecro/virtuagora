@@ -84,8 +84,12 @@ class SessionManager {
         switch ($role) {
             case 'usr':
                 return true;
+            case 'vrf':
+                return !is_null($this->getUser()->verified_at);
             case 'fnc':
                 return $this->getUser()->es_funcionario;
+            case 'jef':
+                return $this->getUser()->es_jefe;
             case 'mod':
                 return !is_null($this->getUser()->patrulla_id);
             default:

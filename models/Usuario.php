@@ -5,7 +5,7 @@ class Usuario extends Eloquent {
 
     //protected $table = 'usuarios';
     protected $dates = ['deleted_at', 'fin_advertencia', 'fin_suspension'];
-    protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at'];
+    protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at', 'email', 'lu', 'dni'];
 
     public function partido() {
         return $this->belongsTo('Partido');

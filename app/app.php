@@ -116,8 +116,14 @@ $app->get('/captcha', function () use ($app) {
     $app->flash('captcha', $builder->getPhrase());
     $builder->output();
 })->name('shwCaptcha');
+$app->get('/siu-captcha', function () use ($app) {
+    $app->render('portal/siu-captcha.twig');
+})->name('shwSiuCaptcha');
 
 //$app->get('/userlog', 'UserlogCtrl:listar')->name('shwListaUserlog');
+
+$app->get('/certificar', $checkRole('usr'), 'PortalCtrl:verCertificar')->name('shwCertificar');
+$app->post('/certificar', $checkRole('usr'), 'PortalCtrl:certificar')->name('runCertificar');
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
@@ -148,7 +154,7 @@ $app->group('/comentario', function () use ($app, $checkRole) {
     $app->get('', 'ComentarioCtrl:listar')->name('shwListaComenta');
     $app->post('/comentar/:tipoRaiz/:idRaiz', $checkRole('usr'), 'ComentarioCtrl:comentar')->name('runComentar');
     $app->get('/:idCom', 'ComentarioCtrl:ver')->name('shwComenta');
-    $app->post('/:idCom/votar', $checkRole('usr'), 'ComentarioCtrl:votar')->name('runVotarComenta');
+    $app->post('/:idCom/votar', $checkRole('vrf'), 'ComentarioCtrl:votar')->name('runVotarComenta');
 });
 
 $app->group('/perfil', function () use ($app, $checkRole) {
@@ -196,18 +202,18 @@ $app->group('/propuesta', function () use ($app, $checkRole, $checkModifyAuth) {
     $app->get('/crear', $checkRole('fnc'), 'PropuestaCtrl:verCrear')->name('shwCrearPropues');
     $app->post('/crear', $checkRole('fnc'), 'PropuestaCtrl:crear')->name('runCrearPropues');
     $app->get('/:idPro', 'PropuestaCtrl:ver')->name('shwPropues');
-    $app->post('/:idPro/votar', $checkRole('usr'), 'PropuestaCtrl:votar')->name('runVotarPropues');
-    $app->post('/:idPro/cambiar-privacidad', $checkRole('usr'), 'PropuestaCtrl:cambiarPrivacidad')->name('runModifPrvPropues');
+    $app->post('/:idPro/votar', $checkRole('vrf'), 'PropuestaCtrl:votar')->name('runVotarPropues');
+    $app->post('/:idPro/cambiar-privacidad', $checkRole('vrf'), 'PropuestaCtrl:cambiarPrivacidad')->name('runModifPrvPropues');
     $app->get('/:idPro/modificar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:verModificar')->name('shwModifPropues');
     $app->post('/:idPro/modificar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:modificar')->name('runModifPropues');
     $app->post('/:idPro/eliminar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:eliminar')->name('runElimiPropues');
 });
 
 $app->group('/problematica', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('usr'), 'ProblematicaCtrl:verCrear')->name('shwCrearProblem');
-    $app->post('/crear', $checkRole('usr'), 'ProblematicaCtrl:crear')->name('runCrearProblem');
+    $app->get('/crear', $checkRole('vrf'), 'ProblematicaCtrl:verCrear')->name('shwCrearProblem');
+    $app->post('/crear', $checkRole('vrf'), 'ProblematicaCtrl:crear')->name('runCrearProblem');
     $app->get('/:idPro', 'ProblematicaCtrl:ver')->name('shwProblem');
-    $app->post('/:idPro/votar', $checkRole('usr'), 'ProblematicaCtrl:votar')->name('runVotarProblem');
+    $app->post('/:idPro/votar', $checkRole('vrf'), 'ProblematicaCtrl:votar')->name('runVotarProblem');
     $app->get('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:verModificar')->name('shwModifProblem');
     $app->post('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:modificar')->name('runModifProblem');
     $app->post('/:idPro/eliminar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:eliminar')->name('runElimiProblem');

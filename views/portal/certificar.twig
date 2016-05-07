@@ -1,0 +1,68 @@
+{# VARIBLES #}
+{% set footer = false %}
+{% set barraNav = false %}
+{% set notificaciones = false %}
+{% set html_class = 'registro-bg' %}
+{% set body_class = 'no-body-bg' %}
+
+{% extends "master.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Registrar nuevo usuario{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block linkhead %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block body %}
+
+<div class="registro usuario row">
+	<div class="medium-10 medium-centered columns no-padding-small-only">
+		<div class="panel text-center">
+			<div class="row">
+				<div class="small-12 columns">
+					<h1 class="seccion"><b>Certificar cuenta</b></h1>
+					<div class="descripcion">
+						Para verificar tu identidad, es necesario que entrés al 
+						<a href="https://guarani.frsf.utn.edu.ar/v291/acceso" target="_blank">SIU Guaraní</a>
+						y que generes el PDF de un certificado de alumno regular.
+						Una vez hecho, ingresá el código de validación a continuación y luego completa el CAPTCHA.
+						(¿Dónde está el código?)
+					</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-11 small-centered columns">
+					<form action="{{ urlFor('runCertificar') }}" method="POST">
+						<div class="row collapse">
+							<div class="small-12 columns">
+								<input name="codigo" type="text" placeholder="Código de Validación" required>
+								<input id="challengeRC" name="challenge" type="hidden">
+								<input id="captchaRC" name="captcha" type="hidden">
+							</div>
+						    <div class="small-12 columns text-center">
+								<iframe src="{{ urlFor('shwSiuCaptcha') }}" id="frameRC" height="150" width="340"></iframe>
+							</div>
+							<div class="small-12 columns text-center">
+								<button class="button success radius large expand"><i class="fa fa-check fa-fw fa-lg"></i> Continuar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts %}
+<script>
+    $('form').submit(function(e) {
+        $('#captchaRC').val($("#frameRC").contents().find("#recaptcha_response_field").val());
+        $('#challengeRC').val($("#frameRC")[0].contentWindow.RecaptchaState.challenge);
+    });
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}
