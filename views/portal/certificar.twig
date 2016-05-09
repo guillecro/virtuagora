@@ -25,7 +25,7 @@
 						<a href="https://guarani.frsf.utn.edu.ar/v291/acceso" target="_blank">SIU Guaraní</a>
 						y que generes el PDF de un certificado de alumno regular.
 						Una vez hecho, ingresá el código de validación a continuación y luego completa el CAPTCHA.
-						(¿Dónde está el código?)
+						(<a href="#" data-reveal-id="myModal">¿Dónde está el código?</a>)
 					</div>
 					<hr>
 				</div>
@@ -35,6 +35,9 @@
 					<form action="{{ urlFor('runCertificar') }}" method="POST">
 						<div class="row collapse">
 							<div class="small-12 columns">
+							<input name="lu" type="text" placeholder="LU" required>
+								<input name="carrera" type="text" placeholder="Carrera que está cursando" required>
+
 								<input name="codigo" type="text" placeholder="Código de Validación" required>
 								<input id="challengeRC" name="challenge" type="hidden">
 								<input id="captchaRC" name="captcha" type="hidden">
@@ -55,9 +58,15 @@
 
 {% endblock %}
 {# ----------------------------------------------------------- #}
-{% block modals %}{% endblock %}
+{% block modals %}
+<div id="myModal" class="reveal-modal small text-center" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  <img src="{{ baseUrl() }}/assets/img/certificado.png" alt="">
+</div>
+{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block scripts %}
+<script src="{{ baseUrl() }}/assets/js/foundation/foundation.reveal.js"></script>
 <script>
     $('form').submit(function(e) {
         $('#captchaRC').val($("#frameRC").contents().find("#recaptcha_response_field").val());
