@@ -82,6 +82,11 @@ class UsuarioCtrl extends RMRController {
             throw new TurnbackException($vdt->getErrors());
         }
         $usuario = $this->session->getUser();
+        if ($usuario->verified_at) {
+            if ($usuario->nombre != $vdt->getData('nombre') || $usuario->apellido == $vdt->getData('apellido')) {
+                throw new TurnbackException('No podés modificar tu nombre ya que tenés una cuenta verificada.');
+            }
+        }
         $usuario->nombre = $vdt->getData('nombre');
         $usuario->apellido = $vdt->getData('apellido');
         $usuario->save();

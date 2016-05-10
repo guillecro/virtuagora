@@ -53,9 +53,9 @@ class PortalCtrl extends Controller {
                 throw new TurnbackException('Esta persona ya tiene su cuenta certificada.');
             }
             $usuario = $this->session->getUser();
-            $nombreReal = explode(' ', substr($match[1], 10));
-            $nombreUser = explode(' ', strtoupper($usuario->nombre));
-            $apelliUser = explode(' ', strtoupper($usuario->apellido));
+            $nombreReal = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', substr($match[1], 10)));
+            $nombreUser = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', strtoupper($usuario->nombre)));
+            $apelliUser = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', strtoupper($usuario->apellido)));
             $nombreOk = count(array_intersect($nombreUser, $nombreReal)) > 0;
             $nombreOk &= count(array_intersect($apelliUser, $nombreReal)) > 0;
             if (!$nombreOk) {

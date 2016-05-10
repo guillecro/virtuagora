@@ -8,7 +8,7 @@
 {% extends "master.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Registrar nuevo usuario{% endblock %}
+{% block titulo %}Verificar cuenta de usuario{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block linkhead %}{% endblock %}
 {# ----------------------------------------------------------- #}
@@ -35,9 +35,6 @@
 					<form action="{{ urlFor('runCertificar') }}" method="POST">
 						<div class="row collapse">
 							<div class="small-12 columns">
-							<input name="lu" type="text" placeholder="LU" required>
-								<input name="carrera" type="text" placeholder="Carrera que está cursando" required>
-
 								<input name="codigo" type="text" placeholder="Código de Validación" required>
 								<input id="challengeRC" name="challenge" type="hidden">
 								<input id="captchaRC" name="captcha" type="hidden">
