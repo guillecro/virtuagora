@@ -45,17 +45,23 @@ class PortalCtrl extends Controller {
         $html = curl_exec($ch);
         curl_close($ch);
         $match = array();
-        $target = '~La Facultad Regional Santa Fe certifica que (.*?) con legajo n\\\\u00famero (.*?), DNI (.*?), ' .
-                    'de origen Argentino, se encuentra actualmente regular en la carrera de (.*?), plan~';
-        if (preg_match($target, $html, $match) === 1) {
+        $target = '~<script type=\'text/javascript\'>kernel.renderer.on_arrival\\((.*?)\\);</script>~';
+        if (preg_match($target, $html, $match) != 1) {
+            throw new TurnbackException('La validación falló. Comprobá el código de validación y el captcha.');
+        }
+        $mensaje = json_decode($match[1], true);
+        $target = '~La Facultad Regional Santa Fe certifica que (.*?) con legajo número (.*?), DNI (.*?), ' .
+                  'de origen Argentino, se encuentra actualmente regular en la carrera de (.*?), plan~';
+        $match = array();
+        if (preg_match($target, $mensaje['content'], $match) === 1) {
             $certUsr = Usuario::where('lu', $match[2])->orWhere('dni', $match[3])->first();
             if (!is_null($certUsr)) {
                 throw new TurnbackException('Esta persona ya tiene su cuenta certificada.');
             }
             $usuario = $this->session->getUser();
-            $nombreReal = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', substr($match[1], 10)));
-            $nombreUser = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', strtoupper($usuario->nombre)));
-            $apelliUser = explode(' ', iconv('UTF-8', 'ASCII//TRANSLIT', strtoupper($usuario->apellido)));
+            $nombreReal = explode(' ', strtoupper(iconv('UTF-8', 'ASCII//TRANSLIT', substr($match[1], 10))));
+            $nombreUser = explode(' ', strtoupper(iconv('UTF-8', 'ASCII//TRANSLIT', $usuario->nombre)));
+            $apelliUser = explode(' ', strtoupper(iconv('UTF-8', 'ASCII//TRANSLIT', $usuario->apellido)));
             $nombreOk = count(array_intersect($nombreUser, $nombreReal)) > 0;
             $nombreOk &= count(array_intersect($apelliUser, $nombreReal)) > 0;
             if (!$nombreOk) {
@@ -70,7 +76,7 @@ class PortalCtrl extends Controller {
             $this->redirectTo('shwPortal');
             //var_dump(substr($match[1], 10), $match[2], $match[3], $match[4]);
         } else {
-            throw new TurnbackException('La validación falló. Comprobá el código de validación y el captcha.');
+            throw new TurnbackException('La validación falló. Comprobá el código de validación y el captchaa.');
         }
     }
 
