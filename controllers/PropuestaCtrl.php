@@ -163,7 +163,7 @@ class PropuestaCtrl extends Controller {
             ->addRule('categoria', new Validate\Rule\Exists('categorias'))
             ->addRule('referido', new Validate\Rule\NumNatural())
             ->addRule('cuerpo', new Validate\Rule\MinLength(8))
-            ->addRule('cuerpo', new Validate\Rule\MaxLength(8192))
+            ->addRule('cuerpo', new Validate\Rule\MaxLength(65536))
             ->addFilter('cuerpo', FilterFactory::escapeHTML())
             ->addFilter('referido', FilterFactory::emptyToNull())
             ->addFilter('tags', FilterFactory::explode(','))

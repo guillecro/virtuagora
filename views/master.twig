@@ -41,7 +41,7 @@
 			{% if flash['warning'] is defined %}
 			<div data-alert class="alert-box warning text-center">
 				<div class="row">
-					<i class="fa fa-warning fa-lg fa-fw"></i> {{ flash.warning|capitalize }}
+					<i class="fa fa-warning fa-lg fa-fw"></i> {{ flash.warning|raw }}
 				<a href="#" class="close"><i class="fa fa-times fa-fw fa-lg"></i></a>
 			</div>
 		</div>

@@ -152,7 +152,7 @@ class EventoCtrl extends Controller {
             ->addRule('fecha', new Validate\Rule\Date('Y-m-d H:i:s'))
             ->addRule('tags', new Validate\Rule\Required())
             ->addRule('cuerpo', new Validate\Rule\MinLength(8))
-            ->addRule('cuerpo', new Validate\Rule\MaxLength(8192))
+            ->addRule('cuerpo', new Validate\Rule\MaxLength(65536))
             ->addFilter('cuerpo', FilterFactory::escapeHTML())
             ->addFilter('asociar', FilterFactory::booleanFilter())
             ->addFilter('tags', FilterFactory::explode(','));

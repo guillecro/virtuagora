@@ -140,13 +140,13 @@ class DocumentoCtrl extends Controller {
         $vdt->addRule('titulo', new Validate\Rule\MinLength(8))
             ->addRule('titulo', new Validate\Rule\MaxLength(128))
             ->addRule('descripcion', new Validate\Rule\MinLength(8))
-            ->addRule('descripcion', new Validate\Rule\MaxLength(1024))
+            ->addRule('descripcion', new Validate\Rule\MaxLength(2048))
             ->addRule('categoria', new Validate\Rule\NumNatural())
             ->addRule('categoria', new Validate\Rule\Exists('categorias'))
             ->addFilter('tags', FilterFactory::explode(','));
         if ($cuerpo) {
             $vdt->addRule('cuerpo', new Validate\Rule\MinLength(8))
-                ->addRule('cuerpo', new Validate\Rule\MaxLength(8192))
+                ->addRule('cuerpo', new Validate\Rule\MaxLength(65536))
                 ->addFilter('cuerpo', FilterFactory::escapeHTML());
         }
         if (!$vdt->validate($data)) {
