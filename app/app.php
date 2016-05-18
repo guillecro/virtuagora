@@ -210,10 +210,10 @@ $app->group('/propuesta', function () use ($app, $checkRole, $checkModifyAuth) {
 });
 
 $app->group('/problematica', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('vrf'), 'ProblematicaCtrl:verCrear')->name('shwCrearProblem');
-    $app->post('/crear', $checkRole('vrf'), 'ProblematicaCtrl:crear')->name('runCrearProblem');
+    $app->get('/crear', $checkRole('usr'), 'ProblematicaCtrl:verCrear')->name('shwCrearProblem');
+    $app->post('/crear', $checkRole('usr'), 'ProblematicaCtrl:crear')->name('runCrearProblem');
     $app->get('/:idPro', 'ProblematicaCtrl:ver')->name('shwProblem');
-    $app->post('/:idPro/votar', $checkRole('vrf'), 'ProblematicaCtrl:votar')->name('runVotarProblem');
+    $app->post('/:idPro/votar', $checkRole('usr'), 'ProblematicaCtrl:votar')->name('runVotarProblem');
     $app->get('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:verModificar')->name('shwModifProblem');
     $app->post('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:modificar')->name('runModifProblem');
     $app->post('/:idPro/eliminar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:eliminar')->name('runElimiProblem');

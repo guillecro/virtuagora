@@ -59,6 +59,7 @@
 		</table>
 		<fieldset>
 			<legend>Opciones del cupo</legend>
+			<input type="text" id="tx-filtro" placeholder="Filtrar por nombre">
 			<a id="bt-cambiar" class="button expand negative small radius"><i class="fa fa-search fa-fw"></i>&nbsp;Buscar candidatos</a>
 			<a id="bt-vacante" class="button expand negative small radius"><i class="fa fa-external-link fa-fw"></i>&nbsp;Dejar el puesto vacante</a>
 			<a id="bt-cancelar" class="button expand negative small radius"><i class="fa fa-user fa-fw"></i>&nbsp;Mantener funcionario actual</a>
@@ -167,7 +168,8 @@
 			cambiando=-1;
 		});
 		$('#bt-cambiar').click(function() {
-			enviarSolicitud('{{ baseUrl() }}/usuario?');
+		    var filtro = $('#tx-filtro').val()? 'q='+$('#tx-filtro').val(): '';
+			enviarSolicitud('{{ baseUrl() }}/usuario?'+filtro);
 			$('#posiblesCandidatos').foundation('reveal', 'open');
 		});
 		$('#bt-vacante').click(function() {

@@ -53,7 +53,7 @@
 {% block opciones_cont %}
 <div class="panel white opciones text-center">
 	<div class="text-center">
-		<h4><b>¿CUAL ES SU POSTURA CON LA PROPUESTA?</b></h4>
+		<h4><b>¿QUÉ TE PARECE ESTA PROPUESTA?</b></h4>
 	</div>
 	<hr>
 	{% if (voto.postura is not null) and (voto.publico is not null) %}
@@ -68,15 +68,14 @@
 						<i id="icono-voto-publico" class="fa fa-eye fa-fw fa-4x"></i>
 					</li>
 				</ul>
-				<div class="descripcion" style="margin-top:5px;">Su posición es <span id="txt-voto-postura"></span></div>
-				<div class="descripcion">Su dato es <span id="txt-voto-publico"></span></div>
+				<div class="descripcion" style="margin-top:5px;">Tu posición es <span id="txt-voto-postura"></span></div>
+				<div class="descripcion">Tu voto es <span id="txt-voto-publico"></span></div>
 			</div>
 			<div class="medium-6 columns">
 				<hr class="show-for-small-only">
-				<h6><b>SU OPINIÓN FUE REGISTRADA</b></h6>
-				<h5><small>Puede, aun así, cambiar su postura y/o privacidad.</small></h5>
-				<h5><small>NOTA: Cambiar la postura le costará <i class="fa fa-trophy fa-fw"></i> 3 puntos y podrá hacerlo luego de los 3 días de haber votado.</small></h5>
-				<div class="bt-cambiar button negative radius tiny"><i class="fa fa-exchange fa-fw"></i> Cambiar mi opinión</div>
+				<h6><b>CAMBIAR OPINIÓN</b></h6>
+				<h5><small>NOTA: Cambiar la postura te costará <i class="fa fa-trophy fa-fw"></i> 3 puntos y tenés que esperar 1 día luego de haber votado.</small></h5>
+				<div class="bt-cambiar button negative radius tiny"><i class="fa fa-exchange fa-fw"></i> Cambiar mi voto</div>
 			</div>
 		</div>
 	</div>
@@ -95,24 +94,29 @@
 		</div>
 	</div>
 	<div class="posicion text-center" style="display:none">
-		{% if user %}
+		{% if user is null %}
+    	<div class="iniciar-sesion" style="padding-top: 10px">
+			<h5><b>Iniciá sesión o Registrate</b></h5>
+			<p>Para poder participar y dejar tu voto, primero tenés que <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
+		</div>
+		{% elseif user.verified_at %}
 		<form action="{{ urlFor('runVotarPropues', {'idPro': propuesta.contenible_id}) }}" method="POST">
 			<div class="row">
 				<div class="small-12 medium-4 columns">
 					<i id="icono-postura" class="fa fa-fw fa-3x"></i>
-					<div class="descripcion">Su posición es <span id="txt-postura"></span></div>
+					<div class="descripcion">Tu posición es <span id="txt-postura"></span></div>
 				</div>
 				<div class="small-12 medium-4 columns">
 					<hr class="show-for-small-only">
 					<div class="switch small round">
 						<input id="checkbox" name="publico" type="checkbox">
 						<label for="checkbox"></label>
-						<div class="descripcion">Su dato será <span id="txt-publico"></span></div>
+						<div class="descripcion">Tu voto será <span id="txt-publico"></span></div>
 					</div>
 				</div>
 				<div class="small-12 medium-4 columns">
 					<hr class="show-for-small-only">
-					<h6><b>¿DESEA CONFIRMAR?</b></h6>
+					<h6><b>¿CONFIRMAR?</b></h6>
 					<input type="hidden" name="postura">
 					<button class="button small success radius"><i class="fa fa-send fa-fw"></i> Enviar</button>
 					<div class="bt-cancelar button small negative radius"><i class=" fa fa-undo fa-fw"></i> Cancelar</div>
@@ -121,8 +125,8 @@
 		</form>
 		{% else %}
 		<div class="iniciar-sesion" style="padding-top: 10px">
-			<h5><b>Inicie sesión o Registresé</b></h5>
-			<p>Para poder participar y dejar su voto, debe primero <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
+			<h5><b>Tenés que verificar que sos estudiante de la UTN Santa Fe</b></h5>
+			<p>Para poder participar y dejar tu voto, primero tenés que <a href="{{ urlFor('shwCertificar') }}">Certificar tu cuenta <i class="fa fa-check fa-fw fa-lg"></i></a></p>
 		</div>
 		{% endif %}
 	</div>
@@ -134,7 +138,7 @@
 	{% else %}
 	<div class="iniciar-sesion text-center">
 		<h5><b>Aún no hay resultados</b></h5>
-		<p>No hay votos registrados. Sea el primero en participar y dejar su voto.</p>
+		<p>No hay votos registrados. Podés ser el primero en participar y dejar tu voto.</p>
 	</div>
 	{% endif %}
 </div>

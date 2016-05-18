@@ -23,7 +23,7 @@
 {% set alert = true %}
 {% set alert_class = 'alerta propuestas-asociadas text-center'%}
 {% block content_alert %}
-Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="button oposite radius" style="padding: 3px 5px;" href="{{ urlFor('shwCrearPropues')~'#'~problematica.contenible_id }}"><i class="fa fa-plus fa-fw"></i> Nueva Propuesta</a>
+¡Vos sos representante! Podés hacer la diferencia publicando una&nbsp;<a class="button oposite radius" style="padding: 3px 5px;" href="{{ urlFor('shwCrearPropues')~'#'~problematica.contenible_id }}"><i class="fa fa-plus fa-fw"></i> Nueva Propuesta</a>
 {% endblock content_alert %}
 {% endif %}
 {# ----------------------------------------------------------- #}
@@ -37,8 +37,8 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
 {% set chart = {
 'id': 'resultados',
 'data1': {'val': problematica.afectados_directos, 'tag': 'Afectados directos', 'color': '#c37000', 'highlight': '#e8b93c' },
-'data2': {'val': problematica.afectados_indirectos, 'tag': 'Afectados indiretamente', 'color': '#f0bd33', 'highlight': '#edca6c' },
-'data3': {'val': problematica.afectados_indiferentes, 'tag': 'Indiferente', 'color': '#f0d58b', 'highlight': '#faeabe' }}
+'data2': {'val': problematica.afectados_indirectos, 'tag': 'Afectados indirectamente', 'color': '#f0bd33', 'highlight': '#edca6c' },
+'data3': {'val': problematica.afectados_indiferentes, 'tag': 'Indiferentes', 'color': '#f0d58b', 'highlight': '#faeabe' }}
 %}
 {# ----------------------------------------------------------- #}
 {% set share_link = problematica.link %}
@@ -68,7 +68,7 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
 {% endif %}
 <div class="panel white opciones text-center">
     <div class="text-center">
-        <h4><b>¿COMO LE AFECTA LA PROBLEMATICA?</b></h4>
+        <h4><b>¿COMO TE AFECTA ESTA PROBLEMÁTICA?</b></h4>
     </div>
     <hr>
     {% if (voto.postura is not null) %}
@@ -76,13 +76,12 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
         <div class="row">
             <div class="medium-6 columns">
                 <div id="icono-voto-postura"></div>
-                <div class="descripcion" style="margin-top:5px;">La problemática <span id="txt-voto-postura"></span></div>
+                <div class="descripcion" style="margin-top:5px;">Votaste que <span id="txt-voto-postura"></span></div>
             </div>
             <div class="medium-6 columns">
                 <hr class="show-for-small-only">
-                <h6><b>SU OPINIÓN FUE REGISTRADA</b></h6>
-                <h5><small>Puede, aun así, cambiar su postura.</small></h5>
-                <h5><small>NOTA: Cambiar la postura le costará <i class="fa fa-trophy fa-fw"></i> 3 puntos y podrá hacerlo luego de los 3 días de haber votado.</small></h5>
+                <h6><b>CAMBIAR POSTURA</b></h6>
+                <h5><small>NOTA: Cambiar la postura te costará <i class="fa fa-trophy fa-fw"></i> 3 puntos y tenés que esperar 1 día luego de haber votado.</small></h5>
                 <div class="bt-cambiar button negative radius tiny"><i class="fa fa-exchange fa-fw"></i> Cambiar mi postura</div>
             </div>
         </div>
@@ -91,13 +90,19 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
     <div class="votar-posicion text-center" style="display:none">
         <div class="row collapse opciones">
             <div class="medium-4 small-12 columns text-center">
-                <div data-postura=2 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-exclamation fa-rotate-180 fa-3x"></i><i class="fa fa-child fa-fw fa-3x"></i><i class="fa fa-exclamation fa-3x"></i></div>
+                <div data-postura=2 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;">
+                    <i class="fa fa-star fa-fw fa-3x"></i> Directamente
+                </div>
             </div>
             <div class="medium-4 small-12 columns text-center">
-                <div data-postura=1 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-frown-o fa-fw fa-3x"></i></div>
+                <div data-postura=1 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;">
+                    <i class="fa fa-star-half-o fa-fw fa-3x"></i> Indirectamente
+                </div>
             </div>
             <div class="medium-4 small-12 columns text-center">
-                <div data-postura=0 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-meh-o fa-fw fa-3x"></i></div>
+                <div data-postura=0 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;">
+                    <i class="fa fa-star-o fa-fw fa-3x"></i> No me afecta
+                </div>
             </div>
         </div>
     </div>
@@ -111,7 +116,7 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
                 </div>
                 <div class="small-12 medium-6 columns">
                     <hr class="show-for-small-only">
-                    <h6><b>¿DESEA CONFIRMAR?</b></h6>
+                    <h6><b>¿CONFIRMAR?</b></h6>
                     <input type="hidden" name="postura">
                     <button class="button tiny success radius"><i class="fa fa-send fa-fw"></i> Enviar</button>
                     <div class="bt-cancelar button tiny negative radius"><i class=" fa fa-undo fa-fw"></i> Cancelar</div>
@@ -120,8 +125,8 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
         </form>
         {% else %}
         <div class="iniciar-sesion" style="padding-top: 10px">
-            <h5><b>Inicie sesión o Registresé</b></h5>
-            <p>Para poder participar y dejar su voto, debe primero <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
+            <h5><b>Iniciá sesión o Registrate</b></h5>
+            <p>Para poder participar y dejar tu voto, primero tenés que <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
         </div>
         {% endif %}
     </div>
@@ -133,7 +138,7 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
     {% else %}
     <div class="iniciar-sesion text-center">
         <h5><b>Aún no hay resultados</b></h5>
-        <p>No hay votos registrados. Sea el primero en participar y dejar su voto.</p>
+        <p>No hay votos registrados. Podés ser el primero en participar y dejar tu voto.</p>
     </div>
     {% endif %}
 </div>
@@ -178,17 +183,17 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
                     .append(icono.clone().addClass('fa-exclamation fa-rotate-180'))
                     .append(icono.clone().addClass('fa-child'))
                     .append(icono.clone().addClass('fa-exclamation'));
-                $('#txt-voto-postura').html('<b>LE AFECTA DIRECTAMENTE</b>');
+                $('#txt-voto-postura').html('<b>TE AFECTA DIRECTAMENTE</b>');
                 break;
             case 1:
                 $('#icono-voto-postura')
                     .append(icono.clone().addClass('fa-male'));
-                $('#txt-voto-postura').html('<b>LE AFECTA INDIRECTAMENTE</b>');
+                $('#txt-voto-postura').html('<b>TE AFECTA INDIRECTAMENTE</b>');
                 break;
             case 0:
                 $('#icono-voto-postura')
                     .append(icono.clone().addClass('fa-meh-o'))
-                $('#txt-voto-postura').html('<b>LE ES INDIFERENTE</b>');
+                $('#txt-voto-postura').html('<b>TE ES INDIFERENTE</b>');
                 break;
             default:
         }
@@ -199,15 +204,15 @@ Usted, como funcionario, puede hacer la diferencia elevando una&nbsp;<a class="b
         switch(nuevoPostura){
             case 2:
                 $('#icono-postura').html(iconos);
-                $('#txt-postura').html('<b>LE AFECTA DIRECTAMENTE</b>');
+                $('#txt-postura').html('<b>TE AFECTA DIRECTAMENTE</b>');
                 break;
             case 1:
                 $('#icono-postura').html(iconos);
-                $('#txt-postura').html('<b>LE AFECTA INDIRECTAMENTE</b>');
+                $('#txt-postura').html('<b>TE AFECTA INDIRECTAMENTE</b>');
                 break;
             case 0:
                 $('#icono-postura').html(iconos);
-                $('#txt-postura').html('<b>LE ES INDIFERENTE</b>');
+                $('#txt-postura').html('<b>TE ES INDIFERENTE</b>');
                 break;
             default:
         }

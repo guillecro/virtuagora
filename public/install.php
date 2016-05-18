@@ -318,9 +318,14 @@ try {
         $ajuste->value = 'Términos y condiciones de uso.';
         $ajuste->description = 'Términos y condiciones para el uso de la plataforma.';
         $ajuste->save();
-        $categoria = new Categoria;
-        $categoria->nombre = 'General';
-        $categoria->save();
+        $categorias = [
+            'Asuntos Académicos', 'Cultura y Deportes' , 'Ciencia y Técnica', 'Bienestar Estudiantil' ,
+            'Derechos Humanos' , 'Extensión Universitaria', 'General'];
+        foreach ($categorias as $nombre) {
+            $modelCat = new Categoria;
+            $modelCat->nombre = $nombre;
+            $modelCat->save();
+        }
         $usuario = new Usuario;
         $usuario->email = $_POST['usr_email'];
         $usuario->password = password_hash($_POST['usr_password'], PASSWORD_DEFAULT);

@@ -43,7 +43,7 @@ class PropuestaCtrl extends Controller {
             UserlogCtrl::createLog('votPropues', $usuario->id, $propuesta);
         } else if ($voto->postura != $postura) {
             $hoy = Carbon\Carbon::now();
-            if ($hoy->lt($voto->updated_at->addDays(3))) {
+            if ($hoy->lt($voto->updated_at->addDays(1))) {
                 throw new TurnbackException('No puede cambiar su voto tan pronto.');
             }
             $usuario->decrement('puntos', 3);

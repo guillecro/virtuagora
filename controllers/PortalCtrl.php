@@ -11,6 +11,11 @@ class PortalCtrl extends Controller {
     }
 
     public function verPortal() {
+        if (is_null($this->session->user('verified_at'))) {
+            $this->flashNow('warning',
+                'Aún no comprobaste que sos estudiante de la UTN. Hacelo <a href="'.
+                $this->urlFor('shwCertificar').'">ingresando acá</a>.');
+        }
         $this->render('portal/contenidos.twig');
     }
 
@@ -54,7 +59,7 @@ class PortalCtrl extends Controller {
                   'de origen Argentino, se encuentra actualmente regular en la carrera de (.*?), plan~';
         $match = array();
         if (preg_match($target, $mensaje['content'], $match) === 1) {
-            $certUsr = Usuario::where('lu', $match[2])->orWhere('dni', $match[3])->first();
+            $certUsr = Usuario::where('dni', $match[3])->first();
             if (!is_null($certUsr)) {
                 throw new TurnbackException('Esta persona ya tiene su cuenta certificada.');
             }
@@ -67,11 +72,17 @@ class PortalCtrl extends Controller {
             if (!$nombreOk) {
                 throw new TurnbackException('Tu nombre no coincide con: '.substr($match[1], 10).'.');
             }
-            $usuario->lu = $match[2];
-            $usuario->dni = $match[3];
-            $usuario->carrera = $match[4];
-            $usuario->verified_at = Carbon\Carbon::now();
-            $usuario->save();
+            $usuario->increment('puntos', 100, [
+                'verified_at' => Carbon\Carbon::now(),
+                'lu' => $match[2],
+                'dni' => $match[3],
+                'carrera' => $match[4]
+            ]);
+            //$usuario->lu = $match[2];
+            //$usuario->dni = $match[3];
+            //$usuario->carrera = $match[4];
+            //$usuario->verified_at = Carbon\Carbon::now();
+            //$usuario->save();
             $this->flash('success', '¡Felicitaciones! Tu cuenta ya está verificada.');
             $this->redirectTo('shwPortal');
             //var_dump(substr($match[1], 10), $match[2], $match[3], $match[4]);
@@ -87,10 +98,6 @@ class PortalCtrl extends Controller {
             ->addRule('password', new Validate\Rule\MaxLength(128));
         $req = $this->request;
         if ($vdt->validate($req->post()) && $this->session->login($vdt->getData('email'), $vdt->getData('password'))) {
-            if (is_null($this->session->user('verified_at'))) {
-                $this->flash('warning', 'Su identidad no está certificada. ingrese <a href="'.
-                $this->urlFor('shwCertificar').'">acá</a>.');
-            }
             $this->redirectTo('shwPortal');
         } else {
             $this->flash('errors', array('Datos de ingreso incorrectos. Por favor vuelva a intentarlo.'));

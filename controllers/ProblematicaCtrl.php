@@ -45,7 +45,7 @@ class ProblematicaCtrl extends Controller {
             throw new TurnbackException('No puede votar dos veces la misma postura.');
         } else {
             $fecha = Carbon\Carbon::now();
-            $fecha->subDays(3);
+            $fecha->subDays(1);
             if ($fecha->lt($voto->updated_at)) {
                 throw new TurnbackException('No puede cambiar su voto tan pronto.');
             }
