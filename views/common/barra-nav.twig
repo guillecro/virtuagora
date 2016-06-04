@@ -56,7 +56,7 @@
 <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
         <li class="name">
-            <a href="{{ urlFor('shwIndex') }}"><img src="{{baseUrl()}}/assets/img/ceut-logo-nav.png" alt="" class="ceut-logo-nav"></a>
+            <a href="{{ urlFor('shwIndex') }}"><img src="{{baseUrl()}}/assets/img/ceut-logo-nav.png" alt="Ir al Home" class="ceut-logo-nav"></a>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar"><a href="#"><span><i class="fa fa-bars fa-fw fa-lg"></i></span></a></li>
@@ -106,34 +106,23 @@
         <!-- Left Nav Section -->
         <ul class="">
             <li class="divider hide-for-medium-up show-for-small-only"></li>
-            <li class="show-for-medium-up hide-for-small-only"><a href="{{ urlFor('shwIndex') }}"><i class="fa fa-home fa-fw fa-lg"></i></a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwIndex') }}"><i class="fa fa-home fa-fw fa-lg"></i> Inicio</a></li>
-            <li class=""><a href="{{ urlFor('shwPortal') }}"><i class="fa fa-book fa-fw fa-lg"></i> Contenidos</a></li>
-            <li class="has-dropdown show-for-medium-up hide-for-small-only">
-                <a href="#"><i class="fa fa-plus fa-lg fa-fw"></i> Mas</a>
+
+            <li class="has-dropdown">
+                <a href="{{ urlFor('shwPortal') }}"><i class="fa fa-book fa-fw fa-lg"></i> Contenidos</a></a>
                 <ul class="dropdown">
-                    <li class=""><a href="{{ urlFor('shwListaPartido') }}"><i class="fa fa-users fa-fw fa-lg"></i> Grupos políticos</a></li>
-                    <li class=""><a href="{{ urlFor('shwListaOrganis') }}"><i class="fa fa-university fa-fw fa-lg"></i> Organismos</a></li>
-                </ul>
-            </li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaPartido') }}"><i class="fa fa-users fa-fw fa-lg"></i> Grupos políticos</a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{ urlFor('shwListaOrganis') }}"><i class="fa fa-university fa-fw fa-lg"></i> Organismos</a></li>
-            {% if user is not empty %}
-            <li class="show-for-large-up"><a href="{{urlFor('shwCrearProblem')}}" class="shorcut problematica">+<i class="fa fa-bullhorn fa-fw fa-lg"></i></a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a class="shorcut problematica" href="{{urlFor('shwCrearProblem')}}"><i class="fa fa-bullhorn fa-fw fa-lg"></i> Nueva problematica</a></li>
+                    {% if user is not empty %}
+            <li class="show-for-large-up"><a href="{{urlFor('shwCrearProblem')}}" class="shorcut problematica"><i class="fa fa-bullhorn fa-fw fa-lg"></i> Nueva problemática</a></li>
             {% endif %}
             {% if user and (user.es_funcionario == 1) %}
-            <li class="show-for-large-up"><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta">+<i class="fa fa-lightbulb-o fa-fw fa-lg"></i></a></li>
-            <li class="show-for-large-up"><a href="{{urlFor('shwCrearDocumen')}}" class="shorcut documento">+<i class="fa fa-file-text fa-fw fa-lg"></i></a></li>
-            <li class="show-for-large-up"><a href="{{urlFor('shwCrearEvento')}}" class="shorcut evento">+<i class="fa fa-calendar fa-fw fa-lg"></i></a></li>
-            <li class="show-for-large-up"><a href="{{urlFor('shwCrearNovedad')}}" class="shorcut novedad">+<i class="fa fa-newspaper-o fa-fw fa-lg"></i></a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta"><i class="fa fa-lightbulb-o fa-fw fa-lg"></i> Nueva propuesta</a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearDocumen')}}" class="shorcut documento"><i class="fa fa-file-text fa-fw fa-lg"></i> Nuevo documento</a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearEvento')}}" class="shorcut evento"><i class="fa fa-calendar fa-fw fa-lg"></i> Nuevo evento</a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="{{urlFor('shwCrearNovedad')}}" class="shorcut novedad"><i class="fa fa-newspaper-o fa-fw fa-lg"></i> Nueva novedad</a></li>
-            {% endif %}
-                        <li class="show-for-medium-up hide-for-small-only"><a href="javascript:void(0)"><i class="fa fa-question fa-fw fa-lg"></i></a></li>
-            <li class="hide-for-medium-up show-for-small-only"><a href="javascript:void(0)"><i class="fa fa-question fa-fw fa-lg"></i> Ayuda</a></li>
+            <li class=""><a href="{{urlFor('shwCrearPropues')}}" class="shorcut propuesta"><i class="fa fa-lightbulb-o fa-fw fa-lg"></i> Nueva propuesta</a></li>
+            <li class=""><a href="{{urlFor('shwCrearDocumen')}}" class="shorcut documento"><i class="fa fa-file-text fa-fw fa-lg"></i> Nuevo documento</a></li>
+            <li class=""><a href="{{urlFor('shwCrearEvento')}}" class="shorcut evento"><i class="fa fa-calendar fa-fw fa-lg"></i> Nuevo evento</a></li>
+            <li class=""><a href="{{urlFor('shwCrearNovedad')}}" class="shorcut novedad"><i class="fa fa-newspaper-o fa-fw fa-lg"></i> Nueva novedad</a></li>
+{% endif %}
+                </ul>
+            </li>
+            <li class=""><a href="{{ urlFor('shwListaPartido') }}"><i class="fa fa-users fa-fw fa-lg"></i> Agrupaciones</a></li>
+            <li class=""><a href="{{ urlFor('shwListaOrganis') }}"><i class="fa fa-university fa-fw fa-lg"></i> Organismos</a></li>
         </ul>
     </section>
 </nav>

@@ -8,7 +8,7 @@
 {% extends "master.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Grupos políticos{% endblock %}
+{% block titulo %}Agrupaciones{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block linkhead %}{% endblock %}
 {# ----------------------------------------------------------- #}
@@ -30,9 +30,9 @@
 	</div>
 	{% elseif user %}
 	<div class="header-partido text-center" style="{{ random(10)%2 == 0 ? '' : 'display:none'}}">
-		<b>TIP:</b> ¿Sabias que puede crear su propio grupo?
+		<b>TIP:</b> ¿Sabías que puede crear su propia agrupación?
 		<hr class="show-for-small-only">
-		<a href="{{ urlFor('shwCrearPartido') }}"><i class="fa fa-plus fa-fw fa-lg"></i> Crear grupo politico</a>
+		<a href="{{ urlFor('shwCrearPartido') }}"><i class="fa fa-plus fa-fw fa-lg"></i> Crear agrupación</a>
 	</div>
 	{% endif %}
 
@@ -43,15 +43,14 @@
 					<i class="fa fa-circle fa-stack-2x"></i>
 					<i class="fa fa-users fa-inverse fa-stack-1x"></i>
 				</span>
-				<h3><b>Grupos políticos</b></h3>
+				<h3><b>Agrupaciones</b></h3>
 			</div>
 			<div class="txt medium-7 columns text-justify">
-				Los grupos políticos son agrupaciones de personas por un mismo accionar o por una linea de pensamiento en común. Un usuario puede tanto asociarse a un grupo, como crear su propio grupo. Los mismos son utiles tanto como para agrupar y crear pequeñas comunidades de usuarios, o para descubrir otros contenidos que puedan ser de interés para los integrantes.
+                En las agrupaciones  varias personas se juntan y trabajan por un mismo accionar o por una línea de pensamiento en común. Vos podes asociarte a una agrupación en la plataforma, <strong>¡Como tambien podes crear la tuya!</strong> Son utiles tanto como para agrupar y crear pequeñas comunidades de usuarios, o para descubrir otros contenidos que puedan ser de interés para los integrandes de la misma.
 				<div class="text-center medium-text-right" style="margin-top: 15px;">
 					{% if (user or (user.es_funcionario == 1)) and (user.es_jefe == 0) %}
-					<a href="{{ urlFor('shwCrearPartido') }}" class="button success radius tiny"><i class="fa fa-plus fa-fw"></i> Crear grupo político</a>
+					<a href="{{ urlFor('shwCrearPartido') }}" class="button success radius tiny"><i class="fa fa-plus fa-fw"></i> Crear agrupación</a>
 					{% endif %}
-					<a href="javascript:void(0)" class="button radius tiny"><i class="fa fa-question-circle fa-fw"></i> Mas información</a>
 				</div>
 			</div>
 		</div>

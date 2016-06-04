@@ -1,22 +1,22 @@
 
 {% extends "portal/gestion.twig" %}
 
-{% set titulo = '<i class="fa fa-users fa-fw"></i> Administrar grupo' %}
+{% set titulo = '<i class="fa fa-users fa-fw"></i> Administrar agrupación' %}
 {# ----------------------------------------------------------- #}
 {% block opciones %}
-<li class='active'><a href="{{ urlFor('shwCrearPartido') }}">Crear grupo político</a></li>
+<li class='active'><a href="{{ urlFor('shwCrearPartido') }}">Crear agrupación</a></li>
 {% endblock %}
 {# ----------------------------------------------------------- #}
-{% block titulo %}Crear grupo político{% endblock %}
+{% block titulo %}Crear agrupación{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block gestion %}
-<h4>Nuevo grupo político</h4>
-<h6 class="subheader">Crear nuevo grupo</h6>
+<h4>Nueva agrupación</h4>
+<h6 class="subheader">Crear nueva agrupacion</h6>
 <hr>
 <div class="row collapse">
 	<div class="medium-6 columns small-only-text-center">
 		<h6 class="subheader">Cargar imagen de perfil</h6>
-		<div class="descripcion">Nota: Usted podra subir una imagen de perfil luego de haber creado el grupo político.</div>
+		<div class="descripcion">Nota: Usted podra subir una imagen de perfil luego de haber creado la agrupación.</div>
 		<div class="button disabled tiny radius"><i class="fa fa-upload fa-fw fa-lg"></i> Subir imagen</div>
 	</div>
 	<div class="medium-6 columns text-center">
@@ -25,7 +25,7 @@
 </div>
 <hr>
 <form action="{{ urlFor('runCrearPartido') }}" method="POST">
-	<h6 class="subheader">Nombre del grupo político</h6>
+	<h6 class="subheader">Nombre de la agrupación</h6>
 	<input type="text" name="nombre">
 	<hr>
 	<div class="row collapse">
@@ -35,8 +35,8 @@
 		<div class="medium-6 columns"><input type="text" name="acronimo" placeholder="2 a 8 caracteres"></div>
 	</div>
 	<hr>
-	<h6 class="subheader">Descripción del grupo político</h6>
-	<textarea rows=2 name="descripcion" placeholder="Escriba aquí la descripcion de su partido politico"></textarea>
+	<h6 class="subheader">Descripción de la agrupación</h6>
+	<textarea rows=2 name="descripcion" placeholder="Escriba aquí la descripcion de su agrupación"></textarea>
 	<hr>
 	<div class="row collapse">
 		<div class="medium-6 columns">
@@ -74,7 +74,7 @@
 	</div>
 	<hr>
 	<div class="small-text-center large-text-right">
-		<button class="button success radius"><i class="fa fa-plus fa-fw fa-lg"></i><i class="fa fa-check fa-fw fa-lg"></i> Crear nuevo grupo político</button>
+		<button class="button success radius"><i class="fa fa-plus fa-fw fa-lg"></i><i class="fa fa-check fa-fw fa-lg"></i> Crear nueva agrupación</button>
 	</div>
 </form>
 {% endblock %}

@@ -4,11 +4,11 @@
 {% extends "partido/gestion.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Eliminar grupo político{% endblock %}
+{% block titulo %}Eliminar agrupación{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block gestion %}
 <h4>Grupo {{ partido.nombre }}</h4>
-<h6 class="subheader">Eliminación del grupo politico</h6>
+<h6 class="subheader">Eliminación de la agrupación</h6>
 <hr>
 <div class="panel text-center" style="background-color:#9d2727; border: 0;">
 	<h4 style="color:#FFF"><i class="fa fa-warning fa-fw"></i> ATENCIÓN</h4>
@@ -21,7 +21,7 @@
 <hr>
 <div class="text-center">
 	<form action="{{ urlFor('runElimiPartido',{'idPar': partido.id}) }}" method="POST">
-		<button class="button small alert radius"><i class="fa fa-trash-o fa-fw fa-lg"></i>Eliminar grupo político</button>
+		<button class="button small alert radius"><i class="fa fa-trash-o fa-fw fa-lg"></i>Eliminar agrupacion</button>
 	</form>
 </div>
 

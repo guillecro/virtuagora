@@ -16,11 +16,10 @@
 <div class="portal-usuario">
     <div class="row">
         <div class="small-12 small-centered columns text-center intro-paginas listado-cont">
-            <h2><i class="fa fa-book fa-fw"></i> Contenidos</h2>
             <div class="descripcion"><i class="fa fa-angle-double-down fa-lg fa-fw"></i>¡Infórmate y participá!<i class="fa fa-angle-double-down fa-lg fa-fw"></i></div>
         </div>
     </div>
-    {% if user and (user.es_funcionario != 1) %}
+   <!-- {% if user and (user.es_funcionario != 1) %}
     <div class="row">
         <div class="small-12 columns text-center boton-nuevo problematicas">
             <a href="{{urlFor('shwCrearProblem')}}" class="svg">
@@ -71,7 +70,7 @@
         </div>
 
     </div>
-    {% endif %}
+    {% endif %}-->
     <!--
 <div class="intro-listado-contenido">
 <div class="row">
@@ -110,27 +109,27 @@ Los contenidos son la forma de participación que propone la plataforma. Los mis
                             Ver / Ocultar
                         </div>
                         <div class="small-1 columns show-for-small-only">&nbsp;</div>
-                        <a href="javascript:toggle('propuesta')" class="js-a">
+                        <a href="javascript:toggle('propuesta')" class="js-a" title="Propuestas">
                             <div class="bt-filtro propuesta active small-2 medium-4 columns text-center">
                                 <div><i class="fa fa-lightbulb-o fa-fw fa-2x"></i></div>
                             </div>
                         </a>
-                        <a href="javascript:toggle('problematica')" class="js-a">
+                        <a href="javascript:toggle('problematica')" class="js-a" title="Problemáticas">
                             <div class="bt-filtro problematica active small-2 medium-4 columns text-center">
                                 <div><i class="fa fa-bullhorn fa-fw fa-2x"></i></div>
                             </div>
                         </a>
-                        <a href="javascript:toggle('documento')" class="js-a">
+                        <a href="javascript:toggle('documento')" class="js-a" title="Documentos Colaborativos">
                             <div class="bt-filtro documento active small-2 medium-4 columns text-center">
                                 <div><i class="fa fa-file-text-o fa-fw fa-2x"></i></div>
                             </div>
                         </a>
-                        <a href="javascript:toggle('evento')" class="js-a">
+                        <a href="javascript:toggle('evento')" class="js-a" title="Eventos">
                             <div class="bt-filtro evento active small-2 medium-6 columns text-center">
                                 <div><i class="fa fa-calendar fa-fw fa-2x"></i></div>
                             </div>
                         </a>
-                        <a href="javascript:toggle('novedad')" class="js-a">
+                        <a href="javascript:toggle('novedad')" class="js-a" title="Novedades">
                             <div class="bt-filtro novedad active small-2 medium-6 columns text-center">
                                 <div><i class="fa fa-newspaper-o fa-fw fa-2x"></i></div>
                             </div>

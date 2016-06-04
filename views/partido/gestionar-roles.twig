@@ -4,13 +4,13 @@
 {% extends "partido/gestion.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Gestionar roles del grupo político{% endblock %}
+{% block titulo %}Gestionar roles de la agrupación{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block gestion %}
-<h4>Grupo {{ partido.nombre }}</h4>
+<h4>Agrupación {{ partido.nombre }}</h4>
 <h6 class="subheader">Jefes del partido</h6>
 <div class="descripcion">
-	Haciendo clic sobre el icono <i class="fa fa-arrow-down fa-fw"></i> podrá remover a un jefe de la lista de jefes. <b>Nota:</b> Tenga en cuenta que siempre debe haber un jefe, usted puede echar a otros jefes, pero no puede echar al creador del partido en la plataforma.
+	Haciendo clic sobre el icono <i class="fa fa-arrow-down fa-fw"></i> podrá remover a un jefe de la lista de jefes. <b>Nota:</b> Tenga en cuenta que siempre debe haber un jefe, usted puede echar a otros jefes, pero no puede echar al creador de la agrupación en la plataforma.
 </div>
 <hr>
 <table class="tabla-gestion">

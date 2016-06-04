@@ -3,11 +3,7 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
-        if ($this->session->check()) {
-            $this->render('portal/inicio.twig');
-        } else {
-            $this->render('portal/introduccion.twig');
-        }
+        $this->render('portal/inicio.twig');
     }
 
     public function verPortal() {

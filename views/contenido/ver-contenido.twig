@@ -57,7 +57,7 @@
 						<hr>
 						<ul class="no-bullet">
 							{% if autor.es_funcionario %}
-							<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw fa-lg"></i> Funcionario</li>
+							<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw fa-lg"></i> Representante</li>
 							{% endif %}
 							{% if autor.es_jefe %}
 							<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> Jefe de grupo</a></li>
@@ -115,7 +115,7 @@
 						<li style="color:#efce18"><i class="fa fa-check fa-fw"></i> Verificado</li>
 						{% endif %}
 						{% if autor.es_funcionario %}
-						<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw"></i> Funcionario</li>
+						<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw"></i> Representante</li>
 						{% endif %}
 						{% if autor.es_jefe %}
 						<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}" style="color:#222;"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> Jefe de grupo</a></li>

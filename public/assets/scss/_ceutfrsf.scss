@@ -33,7 +33,7 @@
 
 .top-bar{
     //    background-color: #375a7f;
-    margin-bottom: 1px;
+    // height: 47px;
     .name img{
         height: 100%;
         padding: 8px;
@@ -261,13 +261,15 @@
     border-color: #1377b3;
 }
 .intro-paginas.listado-cont{
-    background-color: #1377b3;
-    color: #FFF;
+    color: #1377b3;
     padding: 5px 0 10px;
     margin-bottom: 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    h2{color: #FFF; font-weight: 700; margin-bottom: 0;}
+    h2{color: #355EBF; font-weight: 700; margin-bottom: 0;}
+        border: 1px solid #cacaca;
+    border-top: 0;
+    border-top: 0;
 }
 
 a.shorcut{
