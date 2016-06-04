@@ -11,7 +11,7 @@ class PortalCtrl extends Controller {
     }
 
     public function verPortal() {
-        if (is_null($this->session->user('verified_at'))) {
+        if ($this->session->check() && is_null($this->session->user('verified_at'))) {
             $this->flashNow('warning',
                 'Aún no comprobaste que sos estudiante de la UTN. Hacelo <a href="'.
                 $this->urlFor('shwCertificar').'">ingresando acá</a>.');
@@ -72,17 +72,13 @@ class PortalCtrl extends Controller {
             if (!$nombreOk) {
                 throw new TurnbackException('Tu nombre no coincide con: '.substr($match[1], 10).'.');
             }
-            $usuario->increment('puntos', 100, [
-                'verified_at' => Carbon\Carbon::now(),
-                'lu' => $match[2],
-                'dni' => $match[3],
-                'carrera' => $match[4]
-            ]);
-            //$usuario->lu = $match[2];
-            //$usuario->dni = $match[3];
-            //$usuario->carrera = $match[4];
-            //$usuario->verified_at = Carbon\Carbon::now();
-            //$usuario->save();
+            $usuario->increment('puntos', 100);
+            $usuario->lu = $match[2];
+            $usuario->dni = $match[3];
+            $usuario->carrera = $match[4];
+            $usuario->verified_at = Carbon\Carbon::now();
+            $usuario->save();
+            $this->session->update();
             $this->flash('success', '¡Felicitaciones! Tu cuenta ya está verificada.');
             $this->redirectTo('shwPortal');
             //var_dump(substr($match[1], 10), $match[2], $match[3], $match[4]);

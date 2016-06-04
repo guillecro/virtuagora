@@ -21,7 +21,7 @@
             <h2 class="nombre">{{ organismo.nombre|capitalize }}</h2>
             <hr>
             <ul class="nav">
-                <li><i class="fa fa-briefcase fa-fw fa-lg"></i> {{ funcionarios|length }} funcionarios activos</li>
+                <li><i class="fa fa-briefcase fa-fw fa-lg"></i> {{ funcionarios|length }} estudiantes que te representan</li>
             </ul>
         </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="row contenido">
         <dl class="tabs" role=tablist data-tab>
             <dd class="active"><a href="#datos">Informacion general</a></dd>
-            <dd><a href="#funcionarios">Funcionarios</a></dd>
+            <dd><a href="#funcionarios">Representantes</a></dd>
         </dl>
     </div>
     <hr>
@@ -102,7 +102,7 @@
                                                             {% endif %}
                                                             {% endif %}
                                                             small-border size-64" src="{{ avatarUrl(funcionario.img_tipo, funcionario.img_hash, 64) }}"></a></td>
-                                        <td class="text-center"><h4>{{ jefe.nombre }} {{ jefe.apellido }}</h4></td>
+                                        <td class="text-center"><h4>{{ funcionario.nombre }} {{ funcionario.apellido }}</h4></td>
                                         <td class="text-center"><h2><a href="{{ urlFor('shwUsuario', {'idUsu': funcionario.id}) }}"><i class="fa fa-caret-right fa-fw"></i></a></h2></td>
                                     </tr>
                                     {% endfor %}
