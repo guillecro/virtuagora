@@ -49,8 +49,8 @@
 			</div>
 			<div class="row">
 				<div class="small-11 medium-10 large-8 small-centered columns">
-					<form action="" method="POST">
-					<p>Enviaremos un email a su cuenta.<br>Revise su email y siga los pasos para recuperarla.</p>
+					<form action="{{ urlFor('runRecuperarClave') }}" method="POST">
+					<p>Te enviaremos un link de recuperación por email.<br>Revisá tu casilla y seguí los pasos.</p>
 						<input name="email" type="email" placeholder="Ingrese su email" style="border: 1px solid #CACACA; border-radius:5px;" required>
 						<br>
 						<button class="button radius large expand"><i class="fa fa-life-ring fa-fw"></i>&nbsp;Recuperar mi contraseña</button>

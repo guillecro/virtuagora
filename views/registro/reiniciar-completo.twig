@@ -8,7 +8,7 @@
 {% extends "master.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Revise su correo{% endblock %}
+{% block titulo %}¡Contraseña reiniciada!{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block linkhead %}{% endblock %}
 {# ----------------------------------------------------------- #}
@@ -19,13 +19,10 @@
 		<div class="panel text-center">
 			<div class="row">
 				<div class="small-12 columns">
-					<h1><i class="fa fa-envelope fa-fw fa-lg" style="color: #383838"></i></h1>
-					<h5 class="seccion"><b>Revise su correo electronico</b></h5>
+					<h1><i class="fa fa-check fa-fw fa-lg" style="color: #61bf26"></i></h1>
+					<h5 class="seccion"><b>Tu contraseña fue reiniciada</b></h5>
 					<hr>
-                    <div class="descripcion">
-						Hemos enviado a su correo electronico un email para que siga los pasos para que reinicie su contraseña. Le recomendamos que no deje pasar mucho tiempo ya que el link expira pronto.
-					</div>
-					<a href="{{ urlFor('shwPortal') }}" class="button large negative radius"><i class="fa fa-sign-in fa-fw"></i>¡Siga navegando en Virtuagora!</a>
+					<a href="{{ urlFor('shwLogin') }}" class="button large negative radius"><i class="fa fa-sign-in fa-fw"></i>Iniciar sesión</a>
 				</div>
 			</div>
 		</div>

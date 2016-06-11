@@ -52,6 +52,7 @@ try {
             $table->string('dni')->nullable();
             $table->string('lu')->nullable();
             $table->string('carrera')->nullable();
+            $table->string('token')->nullable()->default(null);
             $table->timestamp('verified_at')->nullable();
             $table->timestamp('fin_advertencia')->nullable();
             $table->timestamp('fin_suspension')->nullable();

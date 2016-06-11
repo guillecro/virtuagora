@@ -8,7 +8,7 @@
 {% extends "master.twig" %}
 
 {# ----------------------------------------------------------- #}
-{% block titulo %}Recuperar contraseña{% endblock %}
+{% block titulo %}Reiniciar contraseña{% endblock %}
 {# ----------------------------------------------------------- #}
 {% block linkhead %}{% endblock %}
 {# ----------------------------------------------------------- #}
@@ -25,9 +25,9 @@
 			</div>
 			<div class="row">
 				<div class="small-11 medium-10 large-8 small-centered columns">
-					<form action="{{ urlFor('runLogin') }}" method="POST">
-						<input name="password_nuevo" type="password" placeholder="Su nueva contraseña" required>
-						<input name="password_confirmacion" type="password" placeholder="Confirme la nueva contraseña" required>
+					<form action="{{ urlFor('runReiniciarClave',{'idUsu': idUsu,'token': token}) }}" method="POST">
+						<input name="password" type="password" placeholder="Nueva contraseña" required>
+						<input name="password2" type="password" placeholder="Confirmar nueva contraseña" required>
 						<button class="button radius large expand"><i class="fa fa-sign-in fa-fw"></i>&nbsp;Reiniciar contraseña</button>
 						<div style="margin-top: 15px;">
 						</div>
