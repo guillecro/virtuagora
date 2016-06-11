@@ -60,13 +60,14 @@
 							<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw fa-lg"></i> Representante</li>
 							{% endif %}
 							{% if autor.es_jefe %}
-							<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> Jefe de grupo</a></li>
+							<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}" title="Ver la agrupacion"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> En agrupacion</a></li>
 							{% endif %}
 							{% if autor.patrulla_id != null %}
 							<li><i class="fa fa-shield fa-fw fa-lg"></i> Moderador</li>
 							{% endif %}
 						</ul>
 					</div>
+
 					<ul class="accesos no-bullet">
 						{% if ver_comentarios == true %}
 						<li><a href="#comentariosContenido" class="button expand oposite radius small"><i class="fa fa-comments-o fa-fw fa-lg"></i> {{ comentarios|length }}</a></li>
