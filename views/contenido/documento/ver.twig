@@ -36,7 +36,13 @@
 {% endif %}
 {% endblock accesos_content %}
 {# ----------------------------------------------------------- #}
-
+{% block linkheads_cont %}
+<meta property="og:url"                content="{{ urlFor('shwDocumen', {'idDoc': documento.contenible_id}) }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ documento.titulo|capitalize }} - Documento Colaborativo - CEUT FRSF" />
+<meta property="og:description"        content="{{ documento.descripcion }}" />
+<meta property="og:image"              content="{{ baseUrl() }}/assets/img/documento-share.png" />
+{% endblock linkheads_cont %}
 {# ----------------------------------------------------------- #}
 {% if version.version != documento.ultima_version %}
 {% set alert = true %}
