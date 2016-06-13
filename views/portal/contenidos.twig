@@ -16,7 +16,7 @@
 <div class="portal-usuario">
     <div class="row">
         <div class="small-12 small-centered columns text-center intro-paginas listado-cont">
-            <div class="descripcion"><i class="fa fa-angle-double-down fa-lg fa-fw"></i>¡Infórmate y participá!<i class="fa fa-angle-double-down fa-lg fa-fw"></i></div>
+            <div class="descripcion"><i class="fa fa-angle-double-down fa-lg fa-fw"></i>¡Informate y participá!<i class="fa fa-angle-double-down fa-lg fa-fw"></i></div>
         </div>
     </div>
    <!-- {% if user and (user.es_funcionario != 1) %}
@@ -180,7 +180,7 @@ Los contenidos son la forma de participación que propone la plataforma. Los mis
                                 <option value="1">General</option>
                             </select>
                         </div>
-                        {% if user.partido_id is defined %}
+                        {% if user.partido_id is not null %}
                         <hr class="hide-for-small-only">
                         <div class="title-opciones small-6 medium-12 columns text-center">
                             Mostrar solo de mi grupo

@@ -46,6 +46,7 @@ $app->error(function (Exception $e) use ($app) {
             $app->render('misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
         } else {
             $app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
+            //$app->render('misc/error.twig', array('mensaje' => 'Ocurrió un error interno. Si el problema persiste contactá un administrador.'), 500);
         }
     }
 });
@@ -134,6 +135,11 @@ $app->post('/logout', 'PortalCtrl:logout')->name('runLogout');
 $app->get('/registro', $checkNoSession, 'PortalCtrl:verRegistrar')->name('shwCrearUsuario');
 $app->post('/registro', $checkNoSession, 'PortalCtrl:registrar')->name('runCrearUsuario');
 $app->get('/validar/:idUsu/:token', 'PortalCtrl:verificarEmail')->name('runValidUsuario');
+$app->get('/recuperar-clave', $checkNoSession, 'PortalCtrl:verRecuperarClave')->name('shwRecuperarClave');
+$app->post('/recuperar-clave', $checkNoSession, 'PortalCtrl:recuperarClave')->name('runRecuperarClave');
+$app->get('/reiniciar-clave/:idUsu/:token', $checkNoSession, 'PortalCtrl:verReiniciarClave')->name('shwReiniciarClave');
+$app->post('/reiniciar-clave/:idUsu/:token', $checkNoSession, 'PortalCtrl:reiniciarClave')->name('runReiniciarClave');
+$app->get('/reiniciar-clave', $checkNoSession, 'PortalCtrl:finReiniciarClave')->name('endReiniciarClave');
 
 $app->get('/notificacion', $checkRole('usr'), 'NotificacionCtrl:listar')->name('shwListaNotific');
 $app->post('/notificacion/eliminar', $checkRole('usr'), 'NotificacionCtrl:eliminar')->name('runElimiNotific');
