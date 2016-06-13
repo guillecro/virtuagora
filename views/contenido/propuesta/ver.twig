@@ -6,13 +6,13 @@
 {# ----------------------------------------------------------- #}
 {% block titulo %}Propuesta - {{ propuesta.titulo|capitalize }} {% endblock %}
 {# ----------------------------------------------------------- #}
-{% block linkheads_cont %}
+{% block metatags %}
 <meta property="og:url"                content="{{ propuesta.link }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ propuesta.titulo|capitalize }} - Propuesta - CEUT FRSF" />
 <meta property="og:description"        content="{{ propuesta.cuerpo|bbCode|slice(0,180)|replace({'<br>': " ", '<b>': "",'</b>': "",'<i>': "",'</i>': "",'<u>': "",'</u>': ""}) }} ... [Leer Mas]" />
 <meta property="og:image"              content="{{ baseUrl() }}/assets/img/propuesta-share.png" />
-{% endblock linkheads_cont %}
+{% endblock metatags %}
 {# ----------------------------------------------------------- #}
 {% set contenido_tipo = 'propuesta' %}
 {% set contenido_icono = 'fa-lightbulb-o' %}

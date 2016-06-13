@@ -6,13 +6,13 @@
 {# ----------------------------------------------------------- #}
 {% block titulo %}Problemática - {{ problematica.titulo|capitalize}}{% endblock %}
 {# ----------------------------------------------------------- #}
-{% block linkheads_cont %}
+{% block metatags %}
 <meta property="og:url"                content="{{ problematica.link }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ problematica.titulo|capitalize }} - Problemática - CEUT FRSF" />
 <meta property="og:description"        content="{{ problematica.cuerpo|bbCode|slice(0,180)|replace({'<br>': " ", '<b>': "",'</b>': "",'<i>': "",'</i>': "",'<u>': "",'</u>': ""}) }} ... [Leer Mas]" />
 <meta property="og:image"              content="{{ baseUrl() }}/assets/img/problematica-share.png" />
-{% endblock linkheads_cont %}
+{% endblock metatags %}
 {# ----------------------------------------------------------- #}
 {% set contenido_tipo = 'problematica' %}
 {% set contenido_icono = 'fa-bullhorn' %}

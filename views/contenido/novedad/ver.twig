@@ -5,13 +5,13 @@
 {# ----------------------------------------------------------- #}
 {% block titulo %}Novedad - {{ novedad.titulo|capitalize }} {% endblock %}
 {# ----------------------------------------------------------- #}
-{% block linkheads_cont %}
+{% block metatags %}
 <meta property="og:url"                content="{{ novedad.link }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ novedad.titulo|capitalize }} - Novedad - CEUT FRSF" />
 <meta property="og:description"        content="{{ novedad.cuerpo|bbCode|slice(0,180)|replace({'<br>': " ", '<b>': "",'</b>': "",'<i>': "",'</i>': "",'<u>': "",'</u>': ""}) }} ... [Leer Mas]" />
 <meta property="og:image"              content="{{ baseUrl() }}/assets/img/novedad-share.png" />
-{% endblock linkheads_cont %}
+{% endblock metatags %}
 {# ----------------------------------------------------------- #}
 {% set contenido_tipo = 'novedad' %}
 {% set contenido_icono = 'fa-newspaper-o' %}

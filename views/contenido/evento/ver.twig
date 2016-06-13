@@ -18,13 +18,13 @@
 {% set contenido_tipo = 'evento' %}
 {% set contenido_icono = 'fa-calendar' %}
 {# ----------------------------------------------------------- #}
-{% block linkheads_cont %}
+{% block metatags %}
 <meta property="og:url"                content="{{ evento.link }}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="{{ evento.titulo|capitalize }} - Evento - CEUT FRSF" />
 <meta property="og:description"        content="{{evento.fecha|date("d/m/Y")}} a las {{evento.fecha|date("H:i")}} en {{ evento.lugar }} - {{ evento.cuerpo|bbCode|slice(0,120)|replace({'<br>': " ", '<b>': "",'</b>': "",'<i>': "",'</i>': "",'<u>': "",'</u>': ""}) }} ... [Leer Mas]" />
 <meta property="og:image"              content="{{ baseUrl() }}/assets/img/evento-share.png" />
-{% endblock linkheads_cont %}
+{% endblock metatags %}
 {# ----------------------------------------------------------- #}
 {% set titulo_cont = evento.titulo|title %}
 {% set fecha_cont = '' ~ evento.created_at|date("d/m/Y") %}
