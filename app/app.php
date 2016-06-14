@@ -59,7 +59,7 @@ $app->hook('slim.before', function () use ($app) {
 // Prepare middlewares
 $checkNoSession = function () use ($app) {
     if ($app->session->check()) {
-        $app->redirect($app->request->getRootUri());
+        $app->redirectTo('shwPortal');
     }
 };
 
