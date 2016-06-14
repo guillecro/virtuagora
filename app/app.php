@@ -45,8 +45,8 @@ $app->error(function (Exception $e) use ($app) {
         } else if ($e instanceof Illuminate\Database\QueryException && $e->getCode() == 23000) {
             $app->render('misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
         } else {
-            $app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
-            //$app->render('misc/error.twig', array('mensaje' => 'Ocurrió un error interno. Si el problema persiste contactá un administrador.'), 500);
+            //$app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
+            $app->render('misc/error.twig', array('mensaje' => 'Ocurrió un error interno. Si el problema persiste contactá un administrador.'), 500);
         }
     }
 });
