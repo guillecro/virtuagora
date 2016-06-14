@@ -19,13 +19,14 @@
             <div class="row">
                 <div class="medium-8 medium-offset-2 columns text-center">
                     <h2 class="trabajemos"><i>¡Trabajando <span class="masnegrita">JUNTOS</span> para hacer de nuestra casa, un <span class="masnegrita">MEJOR</span> lugar!</i></h2>
-                    {% if user is null %}
                     <br>
+                    {% if user is null %}
                     <a href="{{urlFor('shwLogin')}}" class="button radius large oposite"><i class="fa fa-sign-in fa-fw fa-lg"></i>Iniciar sesión</a>
 					<a href="{{urlFor('shwCrearUsuario')}}" class="button radius large oposite"><i class="fa fa-user-plus fa-fw fa-lg"></i>Registrarse</a>
-               <br>
-               <br>
-               {% endif %}
+                    {% endif %}
+                    <a href="{{urlFor('shwPortal')}}" class="button radius large oposite"><i class="fa fa-book fa-fw fa-lg"></i>Ver contenidos</a>
+                    <br>
+                    <br>
                 </div>
             </div>
             <div class="row">
