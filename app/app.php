@@ -96,18 +96,6 @@ $checkModifyAuth = function ($resource, $moderable = true) use ($app) {
     };
 };
 
-/* NO ES NECESARIO POR AHORA
-function checkUserAuth($action, $checkMod = false) {
-    global $app;
-    $roles = $app->session->rolesAllowedTo($action);
-    if ($checkMod && count($roles) == 1 && $roles[0] == 'mod') {
-        return $checkAdminAuth('admConteni');
-    } else {
-        return checkRole($roles);
-    }
-}
-*/
-
 // Prepare dispatcher
 $app->get('/captcha', function () use ($app) {
     $builder = new Gregwar\Captcha\CaptchaBuilder;
@@ -238,8 +226,8 @@ $app->group('/documento', function () use ($app, $checkRole, $checkModifyAuth) {
 });
 
 $app->group('/novedad', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'NovedadCtrl:verCrear')->name('shwCrearNovedad');
-    $app->post('/crear', $checkRole('fnc'), 'NovedadCtrl:crear')->name('runCrearNovedad');
+    $app->get('/crear', $checkRole(['fnc','mod']), 'NovedadCtrl:verCrear')->name('shwCrearNovedad');
+    $app->post('/crear', $checkRole(['fnc','mod']), 'NovedadCtrl:crear')->name('runCrearNovedad');
     $app->get('/:idNov', 'NovedadCtrl:ver')->name('shwNovedad');
     $app->get('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:verModificar')->name('shwModifNovedad');
     $app->post('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:modificar')->name('runModifNovedad');
