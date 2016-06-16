@@ -123,13 +123,16 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Unique('preusuarios'))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
-        if ($this->getMode() != 'testing') {
-            $phrase = isset($this->flashData()['captcha'])? $this->flashData()['captcha']: null;
-            $vdt->addRule('captcha', new Validate\Rule\Equal($phrase));
-        }
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
             throw new TurnbackException($vdt->getErrors());
+        }
+        if ($this->getMode() != 'testing') {
+            $recaptcha = new \ReCaptcha\ReCaptcha('6LcMsSITAAAAADBgSzKQcgg-eRm6H9SiteMzmTpj');
+            $resp = $recaptcha->verify($vdt->getData('g-recaptcha-response'));
+            if (!$resp->isSuccess()) {
+                throw new TurnbackException('El CAPTCHA es inválido.');
+            }
         }
         $preuser = new Preusuario;
         $preuser->email = $vdt->getData('email');

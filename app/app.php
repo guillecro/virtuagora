@@ -97,14 +97,14 @@ $checkModifyAuth = function ($resource, $moderable = true) use ($app) {
 };
 
 // Prepare dispatcher
-$app->get('/captcha', function () use ($app) {
+/*$app->get('/captcha', function () use ($app) {
     $builder = new Gregwar\Captcha\CaptchaBuilder;
     $builder->build();
     $app->response->headers->set('Content-Type', 'image/jpeg');
     $app->response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate');
     $app->flash('captcha', $builder->getPhrase());
     $builder->output();
-})->name('shwCaptcha');
+})->name('shwCaptcha');*/
 $app->get('/siu-captcha', function () use ($app) {
     $app->render('portal/siu-captcha.twig');
 })->name('shwSiuCaptcha');
