@@ -120,7 +120,6 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
-            ->addRule('email', new Validate\Rule\Unique('preusuarios'))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
         $req = $this->request;
@@ -134,8 +133,8 @@ class PortalCtrl extends Controller {
                 throw new TurnbackException('El CAPTCHA es inválido.');
             }
         }
-        $preuser = new Preusuario;
-        $preuser->email = $vdt->getData('email');
+        $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
+        //$preuser->email = $vdt->getData('email');
         $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
