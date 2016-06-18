@@ -17,56 +17,61 @@
 {% block body %}
 
 <div class="registro usuario row">
-	<div class="medium-10 medium-centered columns no-padding-small-only">
-		<div class="panel text-center">
-			<div class="row">
-				<div class="small-12 columns">
-					<h1 class="seccion"><b>Registrarse</b></h1>
-					<div class="descripcion">
-						En caso que ya tenga una cuenta, <a href="{{ urlFor('shwLogin') }}"><i class="fa fa-sign-in fa-fw"></i> Inicie Sesión</a>
-					</div>
-					<hr>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-11 small-centered columns">
-					<form data-abide action="{{ urlFor('runCrearUsuario') }}" method="POST">
-						<div class="row collapse">
-							<div class="small-12 medium-12 large-6 columns">
-								<input name="nombre" type="text" placeholder="Nombres (2 máx.)" required pattern="nombre">
-								<small class="error text-center">Obligatorio. Hasta 2 nombres</small>
-							</div>
-							<div class="small-12 medium-12 large-6 columns">
-								<input name="apellido" type="text" placeholder="Apellido" required pattern="apellido">
-								<small class="error text-center">Obligatorio. Hasta un apellido</small>
-							</div>
-							<div class="small-12 columns">
-								<input name="email" type="email" placeholder="Email" required pattern="email">
-								<small class="error text-center">Obligatorio. Debe ser una dirección bien formada</small>
-							</div>
-							<div class="small-12 columns">
-								<input id="password" name="password" type="password" placeholder="Contraseña">
-								<small class="error text-center">Obligatorio</small>
-							</div>
-							<div class="small-12 columns">
-								<small class="error text-center">Las contraseñas no coinciden</small>
-								<input type="password" name="password2" placeholder="Reingrese su contraseña" data-equalto="password">
-							</div>
+    <div class="medium-10 medium-centered columns no-padding-small-only">
+        <div class="panel text-center">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h1 class="seccion"><b>Registrarse</b></h1>
+                    <div class="descripcion">
+                        En caso que ya tenga una cuenta, <a href="{{ urlFor('shwLogin') }}"><i class="fa fa-sign-in fa-fw"></i> Inicie Sesión</a>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-11 small-centered columns">
+                    <form data-abide action="{{ urlFor('runCrearUsuario') }}" method="POST">
+                        <div class="row collapse">
+                            <div class="descripcion">
+                                Por favor, registrate con tu nombre y apellido, <strong>sin sobrenombres</strong>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-12 medium-12 large-6 columns">
+                                <input name="nombre" type="text" placeholder="Nombre" required pattern="nombre">
+                                <small class="error text-center">Obligatorio. Solamente use palabras!</small>
+                            </div>
+                            <div class="small-12 medium-12 large-6 columns">
+                                <input name="apellido" type="text" placeholder="Apellido" required pattern="apellido">
+                                <small class="error text-center">Obligatorio. Solamente use palabras!</small>
+                            </div>
                             <div class="small-12 columns">
-                            	<div class="captcha-cont g-recaptcha" data-sitekey="6LcMsSITAAAAALuIozcmEbT8i7VfrlcyJt7TvIak"></div>
-							</div>
-							<div class="small-12 columns text-center">
-								<div class="descripcion" style="margin: 10px 0 10px;">
-									Al hacer clic en <b>Registrarse</b>, usted acepta los <a href="{{ urlFor('shwTos') }}"><i class="fa fa-file-text-o fa-fw"></i> Terminos y Condiciones de uso</a> y confirma que ha leído nuestra Política de uso de datos, incluido el uso de cookies.
-								</div>
-								<button class="button success radius large expand"><i class="fa fa-check fa-fw fa-lg"></i> Registrarse</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                                <input name="email" type="email" placeholder="Email" required pattern="email">
+                                <small class="error text-center">Obligatorio. Debe ser una dirección bien formada</small>
+                            </div>
+                            <div class="small-12 columns">
+                                <input id="password" name="password" type="password" placeholder="Contraseña">
+                                <small class="error text-center">Obligatorio</small>
+                            </div>
+                            <div class="small-12 columns">
+                                <small class="error text-center">Las contraseñas no coinciden</small>
+                                <input type="password" name="password2" placeholder="Reingrese su contraseña" data-equalto="password">
+                            </div>
+                            <div class="small-12 columns">
+                                <div class="captcha-cont g-recaptcha" data-sitekey="6LcMsSITAAAAALuIozcmEbT8i7VfrlcyJt7TvIak"></div>
+                            </div>
+                            <div class="small-12 columns text-center">
+                                <div class="descripcion" style="margin: 10px 0 10px;">
+                                    Al hacer clic en <b>Registrarse</b>, usted acepta los <a href="{{ urlFor('shwTos') }}"><i class="fa fa-file-text-o fa-fw"></i> Terminos y Condiciones de uso</a> y confirma que ha leído nuestra Política de uso de datos, incluido el uso de cookies.
+                                </div>
+                                <button class="button success radius large expand"><i class="fa fa-check fa-fw fa-lg"></i> Registrarse</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
@@ -76,31 +81,31 @@
 {% block scripts %}
 <script src="{{ baseUrl() }}/assets/js/foundation/foundation.abide.js"></script>
 <script>
-	$(document).ready(function() {
-		if (window.location.hash) {
-			var array = window.location.hash.substring(1).split('&');
-			$('input[name="nombre"]').val(array[0]);
-			$('input[name="apellido"]').val(array[1]);
-			$('input[name="email"]').val(decodeURIComponent(array[2]));
-		}
+    $(document).ready(function() {
+        if (window.location.hash) {
+            var array = window.location.hash.substring(1).split('&');
+            $('input[name="nombre"]').val(array[0]);
+            $('input[name="apellido"]').val(array[1]);
+            $('input[name="email"]').val(decodeURIComponent(array[2]));
+        }
 
-	});
+    });
 
-	$(document).foundation({
-		abide : {
-			patterns: {
-				nombre: /(^([A-Za-zñÑáéíóúÁÉÍÓÚ]+)$)|(^([A-Za-zñÑáéíóúÁÉÍÓÚ]+)\s([A-Za-zñÑáéíóúÁÉÍÓÚ]+)$)/,
-				apellido: /(^([A-Za-zñÑáéíóúÁÉÍÓÚ]+)$)/,
-				//Email Validation as per RFC2822 standards.
-				email: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-			}
-		}
-	});
+    $(document).foundation({
+        abide : {
+            patterns: {
+                nombre: /(^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$)/,
+                apellido: /(^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$)/,
+                //Email Validation as per RFC2822 standards.
+                email: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+            }
+        }
+    });
 
-	$('form').on('invalid.fndtn.abide', function () {
-		var invalid_fields = $(this).find('[data-invalid]');
-		console.log(invalid_fields[0]);
-	})
+    $('form').on('invalid.fndtn.abide', function () {
+        var invalid_fields = $(this).find('[data-invalid]');
+        console.log(invalid_fields[0]);
+    })
 
 </script>
 {% endblock %}
