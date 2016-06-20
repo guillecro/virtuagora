@@ -15,6 +15,9 @@
 	En la siguiente tabla tiene la lista de usuarios que no están verificados. Para agregar un usuario a la lista de "Usuarios a verificar" haga clic en el boton con el icono <i class="fa fa-plus fa-fw"></i>
 </div>
 <hr>
+<input type="text" id="tx-filtro" style="margin: 0; padding: 5px; height: 30px; border-radius: 5px;" placeholder="Filtrar por nombre">
+<a id="buscador" href="#" class="button tiny" style="margin: 0; width: 100%;"><i class="fa fa-search fa-fw"></i>Buscar</a>
+<hr>
 <table id="tabla-usuarios" class="tabla-gestion">
 	<thead>
 		<tr style="//display:none;">
@@ -54,8 +57,13 @@
 		<tr style="//display:none;">
 			<th class="text-center"><i class="fa fa-picture-o fa-fw"></i></th>
 			<th>Usuario</th>
+			<th>DNI</th>
+			<th>LU</th>
+			<th>Carrera</th>
+<!--
 			<th class="text-center"><i class="fa fa-trophy fa-fw"></i></th>
 			<th class="text-center"><i class="fa fa-warning fa-fw"></i>/<i class="fa fa-times fa-fw"></i></th>
+-->
 			<th class="text-center"><i class="fa fa-cog fa-fw"></i></th>
 		</tr>
 	</thead>
@@ -83,7 +91,45 @@
 		enviarSolicitud('{{ baseUrl() }}' + '/usuario?' + jQuery.param(query));
 	});
 
-	var agregarUsuario = function(id, nombre, apellido, puntos, advertencia, suspendido) {
+    $('#buscador').click(function() {
+            var query = { where_null:'verified_at' };
+		    var filtro = $('#tx-filtro').val()? 'q='+$('#tx-filtro').val()+'&'+jQuery.param(query): jQuery.param(query);
+			enviarSolicitud('{{ baseUrl() }}/usuario?'+filtro);
+		});
+
+	var agregarUsuarioVerificar = function(id, nombre, apellido, puntos, advertencia, suspendido) {
+		td_img = $('<td>').addClass('text-center').html('<img src="'+ imgURL.replace(':idUsu',id)+'" class="img-perfil size-20">');
+		td_nombre = $('<td>').html( nombre + ' ' + apellido );
+//		td_puntos = $('<td>').addClass('text-center').html( puntos );
+//		td_status = $('<td>').addClass('text-center').html( 'null' );
+        input_dni = $('<input>').attr('type','text').attr('name','dni');
+        input_lu = $('<input>').attr('type','text').attr('name','lu');
+        select_carrera = $('<select>').attr('style','margin: 0;font-size: 0.8125rem;letter-spacing: -0.3px;padding: 2px 10px;height: auto;').html('<option value="INGENIERIA CIVIL">Civil</option><option value="INGENIERIA ELECTRICA">Electrica</option><option value="INGENIERIA MECANICA">Mecanica</option><option value="INGENIERIA EN SISTEMAS DE INFORMACION">Sistemas</option><option value="INGENIERIA INDUSTRIAL">Industrial</option>');
+        td_dni = $('<td>').html( input_dni );
+        td_lu = $('<td>').html( input_lu );
+        td_carrera = $('<td>').html( select_carrera );
+		boton_agregar = $('<a>').attr('src','#').addClass('agregar button tiny radius').html('<i class="fa fa-plus fa-fw fa-lg"></i>')
+		td_agregar = $('<td>').addClass('text-center').html( boton_agregar );
+		var advertido = null;
+		var suspendido = null;
+		if(advertencia){advertido = 'Si';} else {advertido = 'No';}
+		if(suspendido == '1'){suspendido = 'Si'} else {suspendido = 'No';}
+		td_status = $('<td>').addClass('text-center').html( advertido+' / '+suspendido );
+		tr_usuario = $('<tr>')
+			.append(td_img)
+			.append(td_nombre)
+			.append(td_dni)
+			.append(td_lu)
+			.append(td_carrera)
+			.append(td_agregar)
+			.attr('id','usuario-'+id)
+			.addClass('usuario');
+		if( advertencia ){tr_usuario.addClass('advertido');}
+		if( suspendido ){tr_usuario.addClass('suspendido');}
+		$("#tabla-usuarios").find('tbody').append(tr_usuario);
+	}
+
+    var agregarUsuario = function(id, nombre, apellido, puntos, advertencia, suspendido) {
 		td_img = $('<td>').addClass('text-center').html('<img src="'+ imgURL.replace(':idUsu',id)+'" class="img-perfil size-20">');
 		td_nombre = $('<td>').html( nombre + ' ' + apellido );
 		td_puntos = $('<td>').addClass('text-center').html( puntos );
