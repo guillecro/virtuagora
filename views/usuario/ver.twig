@@ -31,12 +31,12 @@
 			<ul class="nav" style="margin-top: 10px;">
 				{% if usuario.es_funcionario %}
 				<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw fa-lg"></i> Representante</li>
-				{% if usuario.es_jefe %}
-				<li><i style="color:#7DC82C" class="fa fa-bullhorn fa-fw fa-lg"></i> Miembro</li>
 				{% endif %}
+				{% if usuario.es_jefe %}
+				<li><i style="color:#7DC82C" class="fa fa-bullhorn fa-fw fa-lg"></i> Referente</li>
 				{% endif %}
 				{% if usuario.patrulla_id != null %}
-				<li><i class="fa fa-shield fa-fw fa-lg"></i> Moderador</li>
+				<li><i class="fa fa-shield fa-fw fa-lg"></i> Staff</li>
 				{% endif %}
 				{% if usuario.partido %}
 				<li><i class="fa fa-flag fa-fw fa-lg"></i> {{ usuario.partido.nombre }}</li>

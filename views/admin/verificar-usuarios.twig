@@ -234,7 +234,7 @@
 		var usuarios_verificar = new Array();
 		$('.agregando').children('tr').each(function () {
 			var newVerifiedUser = new Object();
-			newVerifiedUser.id = $(this).data('user').id;
+			newVerifiedUser.usr = ''+$(this).data('user').id;
 			newVerifiedUser.dni = $(this).find('input[name=dni]').val();
 			newVerifiedUser.lu = $(this).find('input[name=lu]').val();
 			newVerifiedUser.ca = $(this).find('select[name=ca]').val();

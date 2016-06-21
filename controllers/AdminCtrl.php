@@ -134,20 +134,35 @@ class AdminCtrl extends Controller {
     }
 
     public function verifCiudadano() {
+        $carreras = ['INGENIERIA ELECTRICA','INGENIERIA CIVIL','INGENIERIA MECANICA',
+            'INGENIERIA EN SISTEMAS DE INFORMACION','INGENIERIA INDUSTRIAL'];
         $vdt = new Validate\Validator();
-        $vdt->addRule('entrantes', new Validate\Rule\Regex('/^\[\d+(?:,\d+)*\]$/'));
+        $vdt->addRule('entrantes', new Validate\Rule\Attributes([
+            'usr' => 'ctype_digit',
+            'dni' => 'ctype_digit',
+            'lu' => FilterFactory::isEmptyOrDigit(),
+            'ca' => FilterFactory::inArray($carreras)
+        ]))->addFilter('entrantes', FilterFactory::json_decode());
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
-            throw new TurnbackException('Configuración inválida.');
+            throw new TurnbackException($vdt->getErrors());
         }
-        $entrantes = json_decode($vdt->getData('entrantes'));
-        Usuario::whereIn('id', $entrantes)->whereNull('verified_at')
-            ->increment('puntos', 100, array('verified_at' => Carbon\Carbon::now()));
-        foreach ($entrantes as $entrante) {
-            $log = AdminlogCtrl::createLog('', 7, 'new', $this->session->user('id'), $entrante, 'Usuario');
-            NotificacionCtrl::createNotif($entrante, $log);
+        $usrCtr = Usuario::whereIn('dni', array_column($vdt->getData('entrantes'), 'dni'))->first();
+        if (!is_null($usrCtr)) {
+            throw new TurnbackException($usrCtr->nombre.' '.$usrCtr->apellido.' ya tiene su cuenta certificada.');
         }
-        $this->flash('success', 'Se han verificado los ciudadanos seleccionados exitosamente.');
+        foreach ($vdt->getData('entrantes') as $entrante) {
+            $usuario = Usuario::findOrFail($entrante['usr']);
+            $usuario->verified_at = Carbon\Carbon::now();
+            $usuario->dni = $entrante['dni'];
+            $usuario->lu = $entrante['lu'];
+            $usuario->carrera = $entrante['ca'];
+            $usuario->save();
+            $usuario->increment('puntos', 100);
+            $log = AdminlogCtrl::createLog('', 7, 'new', $this->session->user('id'), $usuario->id, 'Usuario');
+            NotificacionCtrl::createNotif($usuario->id, $log);
+        }
+        $this->flash('success', 'Se han verificado los estudiantes seleccionados exitosamente.');
         $this->redirectTo('shwAdmVrfUsuario');
     }
 

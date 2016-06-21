@@ -2,6 +2,20 @@
 
 class FilterFactory {
 
+    public static function inArray($array, $exec = false) {
+        $f = function($v) use ($array) {
+            return in_array($v, $array);
+        };
+        return ($exec === false) ? $f : call_user_func($f, $exec);
+    }
+    
+    public static function isEmptyOrDigit($exec = false) {
+        $f = function($v) {
+            return empty($v) || ctype_digit($v);
+        };
+        return ($exec === false) ? $f : call_user_func($f, $exec);
+    }
+
     public static function calcHuella($exec = false) {
         $f = function($v) {
             return preg_replace('/[^[:alnum:]]/ui', '', $v);

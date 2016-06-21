@@ -60,10 +60,10 @@
 							<li><i style="color:#DA7C43" class="fa fa-briefcase fa-fw fa-lg"></i> Representante</li>
 							{% endif %}
 							{% if autor.es_jefe %}
-							<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}" title="Ver la agrupacion"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> En agrupacion</a></li>
+							<li><a href="{{ urlFor('shwPartido',{'idPar': autor.partido_id }) }}" title="Ver la agrupacion"><i style="color:#7DC82C" class="fa fa-users fa-fw fa-lg"></i> Referente</a></li>
 							{% endif %}
 							{% if autor.patrulla_id != null %}
-							<li><i class="fa fa-shield fa-fw fa-lg"></i> Moderador</li>
+							<li><i class="fa fa-shield fa-fw fa-lg"></i> Staff</li>
 							{% endif %}
 						</ul>
 					</div>
