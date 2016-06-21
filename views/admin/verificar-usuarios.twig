@@ -142,6 +142,7 @@
 		if(suspendido == '1'){suspendido = 'Si'} else {suspendido = 'No';}
 		td_status = $('<td>').addClass('text-center').html( advertido+' / '+suspendido );
 		tr_usuario = $('<tr>')
+			.data('user', { id: id, nombre: td_nombre })
 			.append(td_img)
 			.append(td_nombre)
 			.append(td_puntos)
@@ -192,13 +193,37 @@
 	}
 
 	$(document).on('click', '.agregar', function() {
-		var id = $(this).closest('.usuario').attr('id').replace('usuario-', '');
-		if( $(".agregando tr#usuario-"+ id).length == 0 ){
-			$(this).removeClass('agregar').addClass('quitar');
-			$(this).addClass('alert');
-			$(this).children().removeClass('fa-plus').addClass('fa-minus');
-			$('.agregando').append($(this).closest('.usuario'));
-		}
+		// var id = $(this).closest('.usuario').attr('id').replace('usuario-', '');
+		// if( $(".agregando tr#usuario-"+ id).length == 0 ){
+		// 	$(this).removeClass('agregar').addClass('quitar');
+		// 	$(this).addClass('alert');
+		// 	$(this).children().removeClass('fa-plus').addClass('fa-minus');
+		// 	$('.agregando').append($(this).closest('.usuario'));
+		// }
+
+		var id = $(this).closest('.usuario').data('user').id;
+		var nombre = $(this).closest('.usuario').data('user').nombre;
+		var td_img = td_img = $('<td>').addClass('text-center').html('<img src="'+ imgURL.replace(':idUsu',id) +'" class="img-perfil size-20">');
+		var td_nombre = $('<td>').html( nombre );
+        var input_dni = $('<input>').attr('type','text').attr('name','dni').attr('style','font-size: 13px;height: 25px;padding: 5px;width: 100px;').attr('placeholder','Ingrese DNI');
+        var input_lu = $('<input>').attr('type','text').attr('name','lu').attr('style','font-size: 13px;height: 25px;padding: 5px;width: 100px;').attr('placeholder','Ingrese LU');
+        var select_carrera = $('<select>').attr('name','ca').attr('style','margin: 0;font-size: 0.8125rem;letter-spacing: -0.3px;padding: 2px 10px;height: auto;').html('<option value="INGENIERIA CIVIL">Civil</option><option value="INGENIERIA ELECTRICA">Electrica</option><option value="INGENIERIA MECANICA">Mecanica</option><option value="INGENIERIA EN SISTEMAS DE INFORMACION">Sistemas</option><option value="INGENIERIA INDUSTRIAL">Industrial</option>');
+        var td_dni = $('<td>').html( input_dni);
+        var td_lu = $('<td>').html( input_lu );
+        var td_carrera = $('<td>').html( select_carrera );
+		var boton_quitar = $('<a>').attr('src','#').addClass('quitar alert button tiny radius').html('<i class="fa fa-minus fa-fw fa-lg"></i>')
+		var td_quitar = $('<td>').addClass('text-center').html( boton_quitar );
+		var tr_usuario = $('<tr>')
+			.data('user',{id: id})
+			.append(td_img)
+			.append(td_nombre)
+			.append(td_dni)
+			.append(td_lu)
+			.append(td_carrera)
+			.append(td_quitar)
+			.addClass('usuario');
+		$(".agregando").append(tr_usuario);
+		$(this).closest('.usuario').remove();
 	});
 
 	$(document).on('click', '.quitar', function() {
@@ -206,12 +231,17 @@
 	});
 
 	$('#verificar').submit(function() {
+		var usuarios_verificar = new Array();
 		$('.agregando').children('tr').each(function () {
-			var id_num = $(this).attr('id').replace('usuario-', '');
-			usuarios_verificar.push(id_num);
+			var newVerifiedUser = new Object();
+			newVerifiedUser.id = $(this).data('user').id;
+			newVerifiedUser.dni = $(this).find('input[name=dni]').val();
+			newVerifiedUser.lu = $(this).find('input[name=lu]').val();
+			newVerifiedUser.ca = $(this).find('select[name=ca]').val();
+			// var id_num = $(this).attr('id').replace('usuario-', '');
+			usuarios_verificar.push(JSON.stringify(newVerifiedUser));
 		});
-
-		json_usuarios = '[' + usuarios_verificar.join() + ']';
+		var json_usuarios = '[' + usuarios_verificar.join() + ']';
 		$('input[name="entrantes"]').val(json_usuarios);
 	});
 </script>
