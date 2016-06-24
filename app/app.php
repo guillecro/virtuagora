@@ -206,8 +206,8 @@ $app->group('/problematica', function () use ($app, $checkRole, $checkModifyAuth
 });
 
 $app->group('/documento', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'DocumentoCtrl:verCrear')->name('shwCrearDocumen');
-    $app->post('/crear', $checkRole('fnc'), 'DocumentoCtrl:crear')->name('runCrearDocumen');
+    $app->get('/crear', $checkRole(['fnc','mod']), 'DocumentoCtrl:verCrear')->name('shwCrearDocumen');
+    $app->post('/crear', $checkRole(['fnc','mod']), 'DocumentoCtrl:crear')->name('runCrearDocumen');
     $app->get('/:idDoc', 'DocumentoCtrl:ver')->name('shwDocumen');
     $app->get('/:idDoc/v/:idVer', 'DocumentoCtrl:ver')->name('shwVerDocumen');
     $app->get('/:idDoc/modificar', $checkModifyAuth('Documento'), 'DocumentoCtrl:verModificar')->name('shwModifDocumen');
@@ -227,8 +227,8 @@ $app->group('/novedad', function () use ($app, $checkRole, $checkModifyAuth) {
 });
 
 $app->group('/evento', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
-    $app->post('/crear', $checkRole('fnc'), 'EventoCtrl:crear')->name('runCrearEvento');
+    $app->get('/crear', $checkRole(['fnc','mod']), 'EventoCtrl:verCrear')->name('shwCrearEvento');
+    $app->post('/crear', $checkRole(['fnc','mod']), 'EventoCtrl:crear')->name('runCrearEvento');
     $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
     $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
     $app->get('/:idEve/modificar', $checkModifyAuth('Evento'), 'EventoCtrl:verModificar')->name('shwModifEvento');
